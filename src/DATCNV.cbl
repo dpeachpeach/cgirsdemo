@@ -30,10 +30,10 @@
        0000-ENT.
            MOVE "0" TO DCP-RC
            IF DCP-FUNC = "J"
-               PERFORM 1000-TOJUL
+               PERFORM 1000-TOJUL THRU 1000-X
            ELSE
                IF DCP-FUNC = "G"
-                   PERFORM 2000-TOGRG
+                   PERFORM 2000-TOGRG THRU 2000-X
                ELSE
                    MOVE "8" TO DCP-RC
                END-IF

@@ -98,7 +98,7 @@
            MOVE "N" TO PFXSW
            MOVE "N" TO NCSW
            PERFORM 2200-PFX
-           PERFORM 2300-NCTL
+           PERFORM 2300-NCTL THRU 2300-X
            PERFORM 2400-FRC.
       *
       *    PREFIX EDIT.  UNKNOWN PREFIX IS REPORTED BUT NOT FATAL -
