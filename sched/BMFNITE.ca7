@@ -1,0 +1,355 @@
+**********************************************************************
+** CA-7 JOB DEFINITIONS - BMF NIGHTLY SETTLEMENT CYCLE
+** APPLICATION SYSTEM  BMFNITE
+** SCHED ID 001  RUNS DAILY EXCEPT SUNDAY, TRIGGERED BY BMF010.
+** REQUIREMENTS BELOW ARE THE AUTHORITY ON RUN ORDER.  THE ORDER IN
+** JCL MEMBER BMFNITE IS A CONVENIENCE FOR SINGLE STREAM RERUNS AND
+** MUST BE KEPT IN STEP WITH THIS MEMBER BY RUN CONTROL.
+**********************************************************************
+
+1LJOB,JOB=BMFGDG,LIST=ALL
+JOB=BMFGDG   LIST=ALL                                  DATE=26.241    PAGE 0001
+
+   JOB    ----JCL----   SYSTEM  USR MAIN PROSE  SCHED  --NUMBER OF-   LAST-RUN
+   NAME    ID  MEMBER   -NAME-  -ID -ID- DSNBR  DSNBR  STP DDS RUNS   DATE/TIME
+
+ BMFGDG   118 DEFGDG   BMFNITE  000 ALL  *NONE* 000650 002 000 4188  26241/0214
+
+        --------------------------- JOB INFORMATION ---------------------------
+        N -- SCHD RESOLUTION REQUIRED      N -- LOAD STEP TO BE EXECUTED
+        N -- OVERRIDE OF JCL REQUIRED      N -- JOB MARKED AS MAINT ONLY
+        N -- MANUAL VERIFICATION REQD      N -- JOB SET FOR HOLD IN REQQ
+        Y -- REQUIREMNTS TO BE LISTED      Y -- COMP TRIGGERS OTHER JOBS
+        N -- JOB IS ELIGIBLE FOR RESTART   N -- CONDITION CODE TEST OMITTED
+        COND CODE TEST ... RC GT 0004 ABENDS THE JOB AND HOLDS SUCCESSORS
+        DESCRIPTION ...... DEFINE GDG BASES
+
+        --------------------------- REQUIREMENTS ------------------------------
+        *NONE*   SUBMITTED ON DEMAND BY RUN CONTROL
+
+        --------------------------- TRIGGERS ----------------------------------
+        JOB      BMFALOC   ON NORMAL COMPLETION            QTM=0000
+
+SLI0-00  REQUEST COMPLETED AT 02:14:07 ON 26.241
+
+1LJOB,JOB=BMFALOC,LIST=ALL
+JOB=BMFALOC  LIST=ALL                                  DATE=26.241    PAGE 0001
+
+   JOB    ----JCL----   SYSTEM  USR MAIN PROSE  SCHED  --NUMBER OF-   LAST-RUN
+   NAME    ID  MEMBER   -NAME-  -ID -ID- DSNBR  DSNBR  STP DDS RUNS   DATE/TIME
+
+ BMFALOC  118 BMFALOC  BMFNITE  000 ALL  *NONE* 000651 002 000 4188  26241/0214
+
+        --------------------------- JOB INFORMATION ---------------------------
+        N -- SCHD RESOLUTION REQUIRED      N -- LOAD STEP TO BE EXECUTED
+        N -- OVERRIDE OF JCL REQUIRED      N -- JOB MARKED AS MAINT ONLY
+        N -- MANUAL VERIFICATION REQD      N -- JOB SET FOR HOLD IN REQQ
+        Y -- REQUIREMNTS TO BE LISTED      N -- COMP TRIGGERS OTHER JOBS
+        N -- JOB IS ELIGIBLE FOR RESTART   N -- CONDITION CODE TEST OMITTED
+        COND CODE TEST ... RC GT 0004 ABENDS THE JOB AND HOLDS SUCCESSORS
+        DESCRIPTION ...... ALLOCATE BMF FILES
+
+        --------------------------- REQUIREMENTS ------------------------------
+        JOB      BMFGDG    SUCCESSFUL COMPLETION           SKIP=N  LEAD=00
+
+        --------------------------- TRIGGERS ----------------------------------
+        *NONE*
+
+SLI0-00  REQUEST COMPLETED AT 02:14:07 ON 26.241
+
+1LJOB,JOB=BMF010,LIST=ALL
+JOB=BMF010   LIST=ALL                                  DATE=26.241    PAGE 0001
+
+   JOB    ----JCL----   SYSTEM  USR MAIN PROSE  SCHED  --NUMBER OF-   LAST-RUN
+   NAME    ID  MEMBER   -NAME-  -ID -ID- DSNBR  DSNBR  STP DDS RUNS   DATE/TIME
+
+ BMF010   118 ENTVAL   BMFNITE  000 ALL  *NONE* 000652 003 001 4188  26241/0214
+
+        --------------------------- JOB INFORMATION ---------------------------
+        N -- SCHD RESOLUTION REQUIRED      N -- LOAD STEP TO BE EXECUTED
+        N -- OVERRIDE OF JCL REQUIRED      N -- JOB MARKED AS MAINT ONLY
+        N -- MANUAL VERIFICATION REQD      N -- JOB SET FOR HOLD IN REQQ
+        Y -- REQUIREMNTS TO BE LISTED      Y -- COMP TRIGGERS OTHER JOBS
+        Y -- JOB IS ELIGIBLE FOR RESTART   N -- CONDITION CODE TEST OMITTED
+        COND CODE TEST ... RC GT 0004 ABENDS THE JOB AND HOLDS SUCCESSORS
+        DESCRIPTION ...... BMF ENTITY VALIDATION
+
+        --------------------------- REQUIREMENTS ------------------------------
+        DATASET  TAX.BMF.ENTITY.MASTER                      CREATED  SKIP=N
+
+        --------------------------- TRIGGERS ----------------------------------
+        JOB      BMF020    ON NORMAL COMPLETION            QTM=0000
+
+SLI0-00  REQUEST COMPLETED AT 02:14:07 ON 26.241
+
+1LJOB,JOB=BMF020,LIST=ALL
+JOB=BMF020   LIST=ALL                                  DATE=26.241    PAGE 0001
+
+   JOB    ----JCL----   SYSTEM  USR MAIN PROSE  SCHED  --NUMBER OF-   LAST-RUN
+   NAME    ID  MEMBER   -NAME-  -ID -ID- DSNBR  DSNBR  STP DDS RUNS   DATE/TIME
+
+ BMF020   118 DUPCHK   BMFNITE  000 ALL  *NONE* 000653 003 002 4188  26241/0214
+
+        --------------------------- JOB INFORMATION ---------------------------
+        N -- SCHD RESOLUTION REQUIRED      N -- LOAD STEP TO BE EXECUTED
+        N -- OVERRIDE OF JCL REQUIRED      N -- JOB MARKED AS MAINT ONLY
+        N -- MANUAL VERIFICATION REQD      N -- JOB SET FOR HOLD IN REQQ
+        Y -- REQUIREMNTS TO BE LISTED      Y -- COMP TRIGGERS OTHER JOBS
+        Y -- JOB IS ELIGIBLE FOR RESTART   N -- CONDITION CODE TEST OMITTED
+        COND CODE TEST ... RC GT 0004 ABENDS THE JOB AND HOLDS SUCCESSORS
+        DESCRIPTION ...... DUPLICATE FILING CONDITION
+
+        --------------------------- REQUIREMENTS ------------------------------
+        JOB      BMF010    SUCCESSFUL COMPLETION           SKIP=N  LEAD=00
+        DATASET  TAX.BMF.MODULE                             CREATED  SKIP=N
+        DATASET  TAX.BMF.TRANS                              CREATED  SKIP=N
+
+        --------------------------- TRIGGERS ----------------------------------
+        JOB      BMF030    ON NORMAL COMPLETION            QTM=0000
+
+SLI0-00  REQUEST COMPLETED AT 02:14:07 ON 26.241
+
+1LJOB,JOB=BMF030,LIST=ALL
+JOB=BMF030   LIST=ALL                                  DATE=26.241    PAGE 0001
+
+   JOB    ----JCL----   SYSTEM  USR MAIN PROSE  SCHED  --NUMBER OF-   LAST-RUN
+   NAME    ID  MEMBER   -NAME-  -ID -ID- DSNBR  DSNBR  STP DDS RUNS   DATE/TIME
+
+ BMF030   118 STATCALC BMFNITE  000 ALL  *NONE* 000654 003 001 4188  26241/0214
+
+        --------------------------- JOB INFORMATION ---------------------------
+        N -- SCHD RESOLUTION REQUIRED      N -- LOAD STEP TO BE EXECUTED
+        N -- OVERRIDE OF JCL REQUIRED      N -- JOB MARKED AS MAINT ONLY
+        N -- MANUAL VERIFICATION REQD      N -- JOB SET FOR HOLD IN REQQ
+        Y -- REQUIREMNTS TO BE LISTED      Y -- COMP TRIGGERS OTHER JOBS
+        Y -- JOB IS ELIGIBLE FOR RESTART   N -- CONDITION CODE TEST OMITTED
+        COND CODE TEST ... RC GT 0004 ABENDS THE JOB AND HOLDS SUCCESSORS
+        DESCRIPTION ...... STATUTE DATE COMPUTATION
+
+        --------------------------- REQUIREMENTS ------------------------------
+        JOB      BMF020    SUCCESSFUL COMPLETION           SKIP=N  LEAD=00
+        DATASET  TAX.BMF.MODULE.DUP                         CREATED  SKIP=N
+
+        --------------------------- TRIGGERS ----------------------------------
+        JOB      BMF040    ON NORMAL COMPLETION            QTM=0000
+
+SLI0-00  REQUEST COMPLETED AT 02:14:07 ON 26.241
+
+1LJOB,JOB=BMF040,LIST=ALL
+JOB=BMF040   LIST=ALL                                  DATE=26.241    PAGE 0001
+
+   JOB    ----JCL----   SYSTEM  USR MAIN PROSE  SCHED  --NUMBER OF-   LAST-RUN
+   NAME    ID  MEMBER   -NAME-  -ID -ID- DSNBR  DSNBR  STP DDS RUNS   DATE/TIME
+
+ BMF040   118 FTDCALC  BMFNITE  000 ALL  *NONE* 000655 003 002 4188  26241/0214
+
+        --------------------------- JOB INFORMATION ---------------------------
+        N -- SCHD RESOLUTION REQUIRED      N -- LOAD STEP TO BE EXECUTED
+        N -- OVERRIDE OF JCL REQUIRED      N -- JOB MARKED AS MAINT ONLY
+        N -- MANUAL VERIFICATION REQD      N -- JOB SET FOR HOLD IN REQQ
+        Y -- REQUIREMNTS TO BE LISTED      Y -- COMP TRIGGERS OTHER JOBS
+        Y -- JOB IS ELIGIBLE FOR RESTART   N -- CONDITION CODE TEST OMITTED
+        COND CODE TEST ... RC GT 0004 ABENDS THE JOB AND HOLDS SUCCESSORS
+        DESCRIPTION ...... FAILURE TO DEPOSIT PENALTY
+
+        --------------------------- REQUIREMENTS ------------------------------
+        JOB      BMF030    SUCCESSFUL COMPLETION           SKIP=N  LEAD=00
+        DATASET  TAX.BMF.MODULE.STAT                        CREATED  SKIP=N
+        DATASET  TAX.BMF.TRANS                              CREATED  SKIP=N
+
+        --------------------------- TRIGGERS ----------------------------------
+        JOB      BMF050    ON NORMAL COMPLETION            QTM=0000
+
+SLI0-00  REQUEST COMPLETED AT 02:14:07 ON 26.241
+
+1LJOB,JOB=BMF050,LIST=ALL
+JOB=BMF050   LIST=ALL                                  DATE=26.241    PAGE 0001
+
+   JOB    ----JCL----   SYSTEM  USR MAIN PROSE  SCHED  --NUMBER OF-   LAST-RUN
+   NAME    ID  MEMBER   -NAME-  -ID -ID- DSNBR  DSNBR  STP DDS RUNS   DATE/TIME
+
+ BMF050   118 PENCALC  BMFNITE  000 ALL  *NONE* 000656 003 002 4188  26241/0214
+
+        --------------------------- JOB INFORMATION ---------------------------
+        N -- SCHD RESOLUTION REQUIRED      N -- LOAD STEP TO BE EXECUTED
+        N -- OVERRIDE OF JCL REQUIRED      N -- JOB MARKED AS MAINT ONLY
+        N -- MANUAL VERIFICATION REQD      N -- JOB SET FOR HOLD IN REQQ
+        Y -- REQUIREMNTS TO BE LISTED      Y -- COMP TRIGGERS OTHER JOBS
+        Y -- JOB IS ELIGIBLE FOR RESTART   N -- CONDITION CODE TEST OMITTED
+        COND CODE TEST ... RC GT 0004 ABENDS THE JOB AND HOLDS SUCCESSORS
+        DESCRIPTION ...... FAILURE TO FILE / PAY
+
+        --------------------------- REQUIREMENTS ------------------------------
+        JOB      BMF040    SUCCESSFUL COMPLETION           SKIP=N  LEAD=00
+        DATASET  TAX.BMF.MODULE.FTD                         CREATED  SKIP=N
+        DATASET  TAX.BMF.TRANS                              CREATED  SKIP=N
+
+        --------------------------- TRIGGERS ----------------------------------
+        JOB      BMF060    ON NORMAL COMPLETION            QTM=0000
+
+SLI0-00  REQUEST COMPLETED AT 02:14:07 ON 26.241
+
+1LJOB,JOB=BMF060,LIST=ALL
+JOB=BMF060   LIST=ALL                                  DATE=26.241    PAGE 0001
+
+   JOB    ----JCL----   SYSTEM  USR MAIN PROSE  SCHED  --NUMBER OF-   LAST-RUN
+   NAME    ID  MEMBER   -NAME-  -ID -ID- DSNBR  DSNBR  STP DDS RUNS   DATE/TIME
+
+ BMF060   118 ESTPEN   BMFNITE  000 ALL  *NONE* 000657 003 001 4188  26241/0214
+
+        --------------------------- JOB INFORMATION ---------------------------
+        N -- SCHD RESOLUTION REQUIRED      N -- LOAD STEP TO BE EXECUTED
+        N -- OVERRIDE OF JCL REQUIRED      N -- JOB MARKED AS MAINT ONLY
+        N -- MANUAL VERIFICATION REQD      N -- JOB SET FOR HOLD IN REQQ
+        Y -- REQUIREMNTS TO BE LISTED      Y -- COMP TRIGGERS OTHER JOBS
+        Y -- JOB IS ELIGIBLE FOR RESTART   N -- CONDITION CODE TEST OMITTED
+        COND CODE TEST ... RC GT 0004 ABENDS THE JOB AND HOLDS SUCCESSORS
+        DESCRIPTION ...... ESTIMATED TAX PENALTY
+
+        --------------------------- REQUIREMENTS ------------------------------
+        JOB      BMF050    SUCCESSFUL COMPLETION           SKIP=N  LEAD=00
+        DATASET  TAX.BMF.MODULE.PEN                         CREATED  SKIP=N
+
+        --------------------------- TRIGGERS ----------------------------------
+        JOB      BMF070    ON NORMAL COMPLETION            QTM=0000
+
+SLI0-00  REQUEST COMPLETED AT 02:14:07 ON 26.241
+
+1LJOB,JOB=BMF070,LIST=ALL
+JOB=BMF070   LIST=ALL                                  DATE=26.241    PAGE 0001
+
+   JOB    ----JCL----   SYSTEM  USR MAIN PROSE  SCHED  --NUMBER OF-   LAST-RUN
+   NAME    ID  MEMBER   -NAME-  -ID -ID- DSNBR  DSNBR  STP DDS RUNS   DATE/TIME
+
+ BMF070   118 FRZEVAL  BMFNITE  000 ALL  *NONE* 000658 003 001 4188  26241/0214
+
+        --------------------------- JOB INFORMATION ---------------------------
+        N -- SCHD RESOLUTION REQUIRED      N -- LOAD STEP TO BE EXECUTED
+        N -- OVERRIDE OF JCL REQUIRED      N -- JOB MARKED AS MAINT ONLY
+        N -- MANUAL VERIFICATION REQD      N -- JOB SET FOR HOLD IN REQQ
+        Y -- REQUIREMNTS TO BE LISTED      Y -- COMP TRIGGERS OTHER JOBS
+        Y -- JOB IS ELIGIBLE FOR RESTART   N -- CONDITION CODE TEST OMITTED
+        COND CODE TEST ... RC GT 0004 ABENDS THE JOB AND HOLDS SUCCESSORS
+        DESCRIPTION ...... FREEZE CONDITION EVAL
+
+        --------------------------- REQUIREMENTS ------------------------------
+        JOB      BMF060    SUCCESSFUL COMPLETION           SKIP=N  LEAD=00
+        DATASET  TAX.BMF.MODULE.EST                         CREATED  SKIP=N
+
+        --------------------------- TRIGGERS ----------------------------------
+        JOB      BMF080    ON NORMAL COMPLETION            QTM=0000
+
+SLI0-00  REQUEST COMPLETED AT 02:14:07 ON 26.241
+
+1LJOB,JOB=BMF080,LIST=ALL
+JOB=BMF080   LIST=ALL                                  DATE=26.241    PAGE 0001
+
+   JOB    ----JCL----   SYSTEM  USR MAIN PROSE  SCHED  --NUMBER OF-   LAST-RUN
+   NAME    ID  MEMBER   -NAME-  -ID -ID- DSNBR  DSNBR  STP DDS RUNS   DATE/TIME
+
+ BMF080   118 OVPINT   BMFNITE  000 ALL  *NONE* 000659 003 001 4188  26241/0214
+
+        --------------------------- JOB INFORMATION ---------------------------
+        N -- SCHD RESOLUTION REQUIRED      N -- LOAD STEP TO BE EXECUTED
+        N -- OVERRIDE OF JCL REQUIRED      N -- JOB MARKED AS MAINT ONLY
+        N -- MANUAL VERIFICATION REQD      N -- JOB SET FOR HOLD IN REQQ
+        Y -- REQUIREMNTS TO BE LISTED      Y -- COMP TRIGGERS OTHER JOBS
+        Y -- JOB IS ELIGIBLE FOR RESTART   N -- CONDITION CODE TEST OMITTED
+        COND CODE TEST ... RC GT 0004 ABENDS THE JOB AND HOLDS SUCCESSORS
+        DESCRIPTION ...... OVERPAYMENT INTEREST
+
+        --------------------------- REQUIREMENTS ------------------------------
+        JOB      BMF070    SUCCESSFUL COMPLETION           SKIP=N  LEAD=00
+        DATASET  TAX.BMF.MODULE.FRZ                         CREATED  SKIP=N
+
+        --------------------------- TRIGGERS ----------------------------------
+        JOB      BMF090    ON NORMAL COMPLETION            QTM=0000
+
+SLI0-00  REQUEST COMPLETED AT 02:14:07 ON 26.241
+
+1LJOB,JOB=BMF090,LIST=ALL
+JOB=BMF090   LIST=ALL                                  DATE=26.241    PAGE 0001
+
+   JOB    ----JCL----   SYSTEM  USR MAIN PROSE  SCHED  --NUMBER OF-   LAST-RUN
+   NAME    ID  MEMBER   -NAME-  -ID -ID- DSNBR  DSNBR  STP DDS RUNS   DATE/TIME
+
+ BMF090   118 OFFSET   BMFNITE  000 ALL  *NONE* 000660 003 002 4188  26241/0214
+
+        --------------------------- JOB INFORMATION ---------------------------
+        N -- SCHD RESOLUTION REQUIRED      N -- LOAD STEP TO BE EXECUTED
+        N -- OVERRIDE OF JCL REQUIRED      N -- JOB MARKED AS MAINT ONLY
+        N -- MANUAL VERIFICATION REQD      N -- JOB SET FOR HOLD IN REQQ
+        Y -- REQUIREMNTS TO BE LISTED      Y -- COMP TRIGGERS OTHER JOBS
+        Y -- JOB IS ELIGIBLE FOR RESTART   N -- CONDITION CODE TEST OMITTED
+        COND CODE TEST ... RC GT 0004 ABENDS THE JOB AND HOLDS SUCCESSORS
+        DESCRIPTION ...... REFUND OFFSET
+
+        --------------------------- REQUIREMENTS ------------------------------
+        JOB      BMF080    SUCCESSFUL COMPLETION           SKIP=N  LEAD=00
+        DATASET  TAX.BMF.MODULE.INT                         CREATED  SKIP=N
+        DATASET  TAX.FMS.DEBTS                              CREATED  SKIP=N
+
+        --------------------------- TRIGGERS ----------------------------------
+        JOB      BMF100    ON NORMAL COMPLETION            QTM=0000
+        JOB      BMF110    ON NORMAL COMPLETION            QTM=0000
+
+SLI0-00  REQUEST COMPLETED AT 02:14:07 ON 26.241
+
+1LJOB,JOB=BMF100,LIST=ALL
+JOB=BMF100   LIST=ALL                                  DATE=26.241    PAGE 0001
+
+   JOB    ----JCL----   SYSTEM  USR MAIN PROSE  SCHED  --NUMBER OF-   LAST-RUN
+   NAME    ID  MEMBER   -NAME-  -ID -ID- DSNBR  DSNBR  STP DDS RUNS   DATE/TIME
+
+ BMF100   118 CAWRMTCH BMFNITE  000 ALL  *NONE* 000661 003 002 4188  26241/0214
+
+        --------------------------- JOB INFORMATION ---------------------------
+        N -- SCHD RESOLUTION REQUIRED      N -- LOAD STEP TO BE EXECUTED
+        N -- OVERRIDE OF JCL REQUIRED      N -- JOB MARKED AS MAINT ONLY
+        N -- MANUAL VERIFICATION REQD      N -- JOB SET FOR HOLD IN REQQ
+        Y -- REQUIREMNTS TO BE LISTED      N -- COMP TRIGGERS OTHER JOBS
+        Y -- JOB IS ELIGIBLE FOR RESTART   N -- CONDITION CODE TEST OMITTED
+        COND CODE TEST ... RC GT 0004 ABENDS THE JOB AND HOLDS SUCCESSORS
+        DESCRIPTION ...... COMBINED ANNUAL WAGE MATCH
+
+        --------------------------- REQUIREMENTS ------------------------------
+        JOB      BMF090    SUCCESSFUL COMPLETION           SKIP=N  LEAD=00
+        DATASET  TAX.BMF.MODULE.OFF                         CREATED  SKIP=N
+        DATASET  TAX.SSA.W2.TOTALS                          CREATED  SKIP=N
+
+        --------------------------- TRIGGERS ----------------------------------
+        *NONE*
+
+SLI0-00  REQUEST COMPLETED AT 02:14:07 ON 26.241
+
+1LJOB,JOB=BMF110,LIST=ALL
+JOB=BMF110   LIST=ALL                                  DATE=26.241    PAGE 0001
+
+   JOB    ----JCL----   SYSTEM  USR MAIN PROSE  SCHED  --NUMBER OF-   LAST-RUN
+   NAME    ID  MEMBER   -NAME-  -ID -ID- DSNBR  DSNBR  STP DDS RUNS   DATE/TIME
+
+ BMF110   118 NOTGEN   BMFNITE  000 ALL  *NONE* 000662 003 001 4188  26241/0214
+
+        --------------------------- JOB INFORMATION ---------------------------
+        N -- SCHD RESOLUTION REQUIRED      N -- LOAD STEP TO BE EXECUTED
+        N -- OVERRIDE OF JCL REQUIRED      N -- JOB MARKED AS MAINT ONLY
+        N -- MANUAL VERIFICATION REQD      N -- JOB SET FOR HOLD IN REQQ
+        Y -- REQUIREMNTS TO BE LISTED      N -- COMP TRIGGERS OTHER JOBS
+        Y -- JOB IS ELIGIBLE FOR RESTART   N -- CONDITION CODE TEST OMITTED
+        COND CODE TEST ... RC GT 0004 ABENDS THE JOB AND HOLDS SUCCESSORS
+        DESCRIPTION ...... NOTICE SELECTION AND GEN
+
+        --------------------------- REQUIREMENTS ------------------------------
+        JOB      BMF090    SUCCESSFUL COMPLETION           SKIP=N  LEAD=00
+        DATASET  TAX.BMF.MODULE.OFF                         CREATED  SKIP=N
+
+        --------------------------- TRIGGERS ----------------------------------
+        *NONE*
+
+SLI0-00  REQUEST COMPLETED AT 02:14:07 ON 26.241
+
+**********************************************************************
+** END OF LISTING.  13 JOBS DEFINED, 11 IN THE NIGHTLY TRIGGERED CHAIN.
+** BMF100 AND BMF110 BOTH DEPEND ON BMF090 AND MAY RUN CONCURRENTLY;
+** THEY READ THE SAME GENERATION AND NEITHER UPDATES IT.
+**********************************************************************

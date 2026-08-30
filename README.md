@@ -25,12 +25,61 @@ irm/         nine IRM sections, harvested from irs.gov, subsection numbers prese
 copybooks/   five copybooks — the shared record contracts
 src/         twelve COBOL programs + three COBOL call shims
 src/asm/     three HLASM routines (reference source, not executed — see below)
-jcl/         decorative JCL, one member per step, plus driver and catalogued proc
+jcl/         decorative JCL, one member per step, plus driver, proc and setup jobs
+ctl/         DFSORT control cards read by the presort steps in jcl/
+sched/       CA-7 job definitions — the run order as the scheduler holds it
+catlg/       LISTCAT.txt — an IDCAMS catalog listing of the dataset inventory
 data/        synthetic fixtures (text source; *.dat are built, gitignored)
 run/         pipeline.sh — the real orchestration
 tools/       BLDFIX card-to-tape loader, collint.sh column-72 lint
 docs/        PIPELINE.md — step sequence and dataset flow
 ```
+
+The same pipeline is described in five notations that have to agree with each
+other: the COBOL, the JCL, the sort control cards, the CA-7 definitions and
+`docs/PIPELINE.md`. Nothing enforces that agreement.
+
+## Inventory
+
+### Batch components
+
+| Job | JCL member | Program | Function | IRM |
+|:---|:---|:---|:---|:---|
+| BMFGDG | `DEFGDG` | IDCAMS | Define GDG bases | — |
+| BMFALOC | `BMFALOC` | IDCAMS / IEBGENER | Allocate flat files, prime module master | — |
+| BMF010 | `ENTVAL` | `ENTVAL` | Entity validation and name control | 3.13.2 |
+| BMF020 | `DUPCHK` | `DUPCHK` | Duplicate filing condition | 21.7.9 |
+| BMF030 | `STATCALC` | `STATCALC` | Statute date computation (ASED/RSED/CSED) | 25.6.1 |
+| BMF040 | `FTDCALC` | `FTDCALC` | Failure to deposit penalty | 20.1.4 |
+| BMF050 | `PENCALC` | `PENCALC` | Failure to file / failure to pay | 20.1.2 |
+| BMF060 | `ESTPEN` | `ESTPEN` | Corporate estimated tax penalty | 20.1.3 |
+| BMF070 | `FRZEVAL` | `FRZEVAL` | Freeze condition evaluation | 21.5.6 |
+| BMF080 | `OVPINT` | `OVPINT` | Overpayment interest | 20.2.4 |
+| BMF090 | `OFFSET` | `OFFSET` | Refund offset against FMS debts | 21.4.6 |
+| BMF100 | `CAWRMTCH` | `CAWRMTCH` | Combined annual wage reporting match | — |
+| BMF110 | `NOTGEN` | `NOTGEN` | Notice selection and generation | — |
+
+`BLDFIX` (`tools/`) is the card-to-tape loader that converts the text fixtures
+to packed-decimal `.dat` files. It has no JCL member; on a real system the
+`.dat` files would arrive from upstream.
+
+### Called subprograms
+
+| Called | Called by | Reference source | Parm |
+|:---|:---|:---|:---|
+| `NAMCTL` | `ENTVAL` | `src/asm/NAMCTL.asm` | 48 bytes |
+| `DATCNV` | `STATCALC`, `FTDCALC`, `PENCALC`, `DATECNV` | `src/asm/DATCNV.asm` | 24 bytes |
+| `PENACC` | `FTDCALC` | `src/asm/PENACC.asm` | 32 bytes |
+| `DATECNV` | `OVPINT`, `NOTGEN` | COBOL only | — |
+
+### Sort control cards
+
+| Member | Used by | Key |
+|:---|:---|:---|
+| `ENTSRT` | BMF010 | EIN |
+| `MODSRT` | BMF020, BMF040, BMF050, BMF100 | EIN / MFT / tax period |
+| `TRNSRT` | BMF020, BMF040, BMF050 | EIN / MFT / tax period / transaction code |
+| `W2SRT` | BMF100 | EIN / tax year |
 
 ## Building
 
@@ -59,14 +108,24 @@ assembler's behaviour. The `.asm` files are reference source. Say this out loud
 in any demo — claiming it runs when it does not is the one thing here that
 would actually cost credibility.
 
-**The JCL does not execute.** It is decorative: plausible DD names, GDG
-generations, `DISP`, `COND=(4,LT)`, a catalogued procedure. Real orchestration
-lives in `run/pipeline.sh`. See `docs/PIPELINE.md`.
+**The JCL does not execute**, and neither do the sort cards, the CA-7
+definitions or the catalog listing. All of it is decorative: plausible DD
+names, GDG generations, `DISP`, `COND=(4,LT)`, a catalogued procedure, DFSORT
+field specifications, scheduler requirement lists. Real orchestration lives in
+`run/pipeline.sh`, which reads flat files from `data/` in a fixed order. See
+`docs/PIPELINE.md`.
+
+Decorative does not mean arbitrary. Each of those artifacts is internally
+consistent and consistent with the record layouts in `copybooks/`, so it can be
+read against the COBOL and be either right or wrong. That is the whole reason
+it is here.
 
 **No VSAM.** Real master files would be indexed (KSDS). Everything here is
 `ORGANIZATION SEQUENTIAL`, because GnuCOBOL's ISAM support requires BDB or
 VBISAM compiled in and frequently is not. Match/merge steps therefore require
-their inputs in key sequence, which the fixtures satisfy.
+their inputs in key sequence. `run/pipeline.sh` satisfies that by generating
+the fixtures in key order; the JCL satisfies it with a presort step ahead of
+each merge, driven by the control cards in `ctl/`.
 
 **Not tax-accurate beyond what the IRM states.** Rates, thresholds and statute
 rules are taken from the harvested sections; anything outside them is invented
@@ -89,5 +148,7 @@ miniature.
 
 Deliberate discrepancies exist between the IRM text and the code. At least one
 is invisible from any single program and contradicts no document at all — it is
-findable only by tracing a field across a program boundary. The answer key is
-held privately and is not in this repository.
+findable only by tracing a field across a program boundary. Another is not a
+COBOL defect at all: it is a disagreement between a job's control cards and the
+program that job runs, visible only if you read both. The answer key is held
+privately and is not in this repository.

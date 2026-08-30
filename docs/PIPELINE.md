@@ -40,15 +40,31 @@ above are the contract.
 ## Sequencing requirement
 
 `DUPCHK`, `FTDCALC`, `PENCALC` and `CAWRMTCH` are match/merge steps and require
-their inputs in **EIN / MFT / tax-period** sequence. There is no sort step —
-the fixtures are generated in key order. On a real system a `SORT` would
-precede each merge; substituting VSAM KSDS would remove the requirement
-entirely.
+their inputs in **EIN / MFT / tax-period** sequence, ascending. `run/pipeline.sh`
+satisfies this by generating the fixtures in key order and never sorting.
+
+The JCL satisfies it differently: each merge job carries `SORT` presort steps
+(`SRT1`, `SRT2`) that write a passed temporary the program step then reads.
+The field specifications live in `ctl/`, not in the JCL:
+
+| Card | Sequences | Read by |
+|---|---|---|
+| `ENTSRT` | entity master, EIN | `ENTVAL` |
+| `MODSRT` | module master, EIN / MFT / tax period | `DUPCHK`, `FTDCALC`, `PENCALC`, `CAWRMTCH` |
+| `TRNSRT` | transaction file, EIN / MFT / tax period / TC | `DUPCHK`, `FTDCALC`, `PENCALC` |
+| `W2SRT` | SSA W-2 totals, EIN / tax year | `CAWRMTCH` |
+
+Displacements in the cards are one-relative into the record as `copybooks/`
+lays it out. Nothing checks that a card and the program reading its output
+agree about key composition or direction; that agreement is maintained by hand.
 
 `CAWRMTCH` additionally performs a control break, summing every MFT 01 module
 for an EIN and tax year before comparing against the SSA W-2 totals. It is the
 only step in the corpus with three-way merge logic (matched / W-2 only /
-941 only).
+941 only), and the only one whose two inputs are sequenced on different keys.
+
+Substituting VSAM KSDS would remove the requirement, and the presort steps
+with it.
 
 ## Dataset naming
 
@@ -56,3 +72,20 @@ The JCL uses GDG generations (`TAX.BMF.MODULE.STAT(+1)` writing, `(0)` reading)
 so a restart at any step picks up the prior generation. `run/pipeline.sh` uses
 flat filenames in `data/` instead, since there are no generation groups
 off-mainframe.
+
+The bases are defined by `jcl/DEFGDG.jcl` and the non-generation datasets by
+`jcl/BMFALOC.jcl`, both one-time setup jobs. `catlg/LISTCAT.txt` is an IDCAMS
+listing of the resulting inventory — fourteen GDG bases and their retained
+generations. Reject datasets (`TAX.BMF.ENTVAL.REJECTS`,
+`TAX.BMF.DUPCHK.REJECTS`) are generation groups with `LIMIT(30)` rather than
+the `LIMIT(5)` the module generations carry, so a reject can be researched a
+month after the cycle that produced it.
+
+## Run order
+
+`sched/BMFNITE.ca7` holds the job dependency graph as the scheduler sees it:
+one `LJOB` listing per job, with predecessor and dataset-creation requirements
+and the jobs each completion triggers. It is the fourth statement of the same
+ordering — after the COBOL's read/write chain, `jcl/BMFNITE.jcl`, and the table
+above — and the only one that says anything about concurrency: `BMF100` and
+`BMF110` both wait on `BMF090` and may run at the same time.

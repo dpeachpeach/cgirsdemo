@@ -1,0 +1,886 @@
+1IDCAMS  SYSTEM SERVICES                                           TIME: 02:14:07        08/29/26     PAGE      1
+0
+    LISTCAT LEVEL(TAX.BMF)  -
+            ALL
+1IDCAMS  SYSTEM SERVICES                                           TIME: 02:14:07        08/29/26     PAGE      2
+-                             LISTING FROM CATALOG -- CATALOG.TAX.MASTER
+0GDG BASE ------ TAX.BMF.MODULE
+      IN-CAT --- CATALOG.TAX.MASTER
+      HISTORY
+        DATASET-OWNER-----(NULL)     CREATION--------2026.198
+        RELEASE----------------2     EXPIRATION------0000.000
+      ATTRIBUTES
+        LIMIT------------    5     SCRATCH       NOEMPTY       LIFO
+      ASSOCIATIONS
+        NONVSAM--TAX.BMF.MODULE.G4188V00
+        NONVSAM--TAX.BMF.MODULE.G4187V00
+        NONVSAM--TAX.BMF.MODULE.G4186V00
+0NONVSAM ------- TAX.BMF.MODULE.G4188V00
+      IN-CAT --- CATALOG.TAX.MASTER
+      HISTORY
+        DATASET-OWNER-----(NULL)     CREATION--------2026.241
+        RELEASE----------------2     EXPIRATION------0000.000
+        ACCOUNT-INFO-----------------------------------(NULL)
+      SMSDATA
+        STORAGECLASS -----SCBASE     MANAGEMENTCLASS---MCSTD
+        DATACLASS --------(NULL)     LBACKUP ---2026.240.0212
+      VOLUMES
+        VOLSER------------BMF001     DEVTYPE------X'3010200F'     FSEQN------------------0
+      ASSOCIATIONS--------(NULL)
+      ATTRIBUTES
+0NONVSAM ------- TAX.BMF.MODULE.G4187V00
+      IN-CAT --- CATALOG.TAX.MASTER
+      HISTORY
+        DATASET-OWNER-----(NULL)     CREATION--------2026.240
+        RELEASE----------------2     EXPIRATION------0000.000
+        ACCOUNT-INFO-----------------------------------(NULL)
+      SMSDATA
+        STORAGECLASS -----SCBASE     MANAGEMENTCLASS---MCSTD
+        DATACLASS --------(NULL)     LBACKUP ---2026.240.0212
+      VOLUMES
+        VOLSER------------BMF001     DEVTYPE------X'3010200F'     FSEQN------------------0
+      ASSOCIATIONS--------(NULL)
+      ATTRIBUTES
+0NONVSAM ------- TAX.BMF.MODULE.G4186V00
+      IN-CAT --- CATALOG.TAX.MASTER
+      HISTORY
+        DATASET-OWNER-----(NULL)     CREATION--------2026.239
+        RELEASE----------------2     EXPIRATION------0000.000
+        ACCOUNT-INFO-----------------------------------(NULL)
+      SMSDATA
+        STORAGECLASS -----SCBASE     MANAGEMENTCLASS---MCSTD
+        DATACLASS --------(NULL)     LBACKUP ---2026.240.0212
+      VOLUMES
+        VOLSER------------BMF001     DEVTYPE------X'3010200F'     FSEQN------------------0
+      ASSOCIATIONS--------(NULL)
+      ATTRIBUTES
+1IDCAMS  SYSTEM SERVICES                                           TIME: 02:14:07        08/29/26     PAGE      3
+-                             LISTING FROM CATALOG -- CATALOG.TAX.MASTER
+0GDG BASE ------ TAX.BMF.MODULE.DUP
+      IN-CAT --- CATALOG.TAX.MASTER
+      HISTORY
+        DATASET-OWNER-----(NULL)     CREATION--------2026.198
+        RELEASE----------------2     EXPIRATION------0000.000
+      ATTRIBUTES
+        LIMIT------------    5     SCRATCH       NOEMPTY       LIFO
+      ASSOCIATIONS
+        NONVSAM--TAX.BMF.MODULE.DUP.G4188V00
+        NONVSAM--TAX.BMF.MODULE.DUP.G4187V00
+        NONVSAM--TAX.BMF.MODULE.DUP.G4186V00
+0NONVSAM ------- TAX.BMF.MODULE.DUP.G4188V00
+      IN-CAT --- CATALOG.TAX.MASTER
+      HISTORY
+        DATASET-OWNER-----(NULL)     CREATION--------2026.241
+        RELEASE----------------2     EXPIRATION------0000.000
+        ACCOUNT-INFO-----------------------------------(NULL)
+      SMSDATA
+        STORAGECLASS -----SCBASE     MANAGEMENTCLASS---MCSTD
+        DATACLASS --------(NULL)     LBACKUP ---2026.240.0212
+      VOLUMES
+        VOLSER------------BMF001     DEVTYPE------X'3010200F'     FSEQN------------------0
+      ASSOCIATIONS--------(NULL)
+      ATTRIBUTES
+0NONVSAM ------- TAX.BMF.MODULE.DUP.G4187V00
+      IN-CAT --- CATALOG.TAX.MASTER
+      HISTORY
+        DATASET-OWNER-----(NULL)     CREATION--------2026.240
+        RELEASE----------------2     EXPIRATION------0000.000
+        ACCOUNT-INFO-----------------------------------(NULL)
+      SMSDATA
+        STORAGECLASS -----SCBASE     MANAGEMENTCLASS---MCSTD
+        DATACLASS --------(NULL)     LBACKUP ---2026.240.0212
+      VOLUMES
+        VOLSER------------BMF001     DEVTYPE------X'3010200F'     FSEQN------------------0
+      ASSOCIATIONS--------(NULL)
+      ATTRIBUTES
+0NONVSAM ------- TAX.BMF.MODULE.DUP.G4186V00
+      IN-CAT --- CATALOG.TAX.MASTER
+      HISTORY
+        DATASET-OWNER-----(NULL)     CREATION--------2026.239
+        RELEASE----------------2     EXPIRATION------0000.000
+        ACCOUNT-INFO-----------------------------------(NULL)
+      SMSDATA
+        STORAGECLASS -----SCBASE     MANAGEMENTCLASS---MCSTD
+        DATACLASS --------(NULL)     LBACKUP ---2026.240.0212
+      VOLUMES
+        VOLSER------------BMF001     DEVTYPE------X'3010200F'     FSEQN------------------0
+      ASSOCIATIONS--------(NULL)
+      ATTRIBUTES
+0GDG BASE ------ TAX.BMF.MODULE.STAT
+      IN-CAT --- CATALOG.TAX.MASTER
+      HISTORY
+        DATASET-OWNER-----(NULL)     CREATION--------2026.198
+        RELEASE----------------2     EXPIRATION------0000.000
+      ATTRIBUTES
+        LIMIT------------    5     SCRATCH       NOEMPTY       LIFO
+      ASSOCIATIONS
+        NONVSAM--TAX.BMF.MODULE.STAT.G4188V00
+        NONVSAM--TAX.BMF.MODULE.STAT.G4187V00
+        NONVSAM--TAX.BMF.MODULE.STAT.G4186V00
+0NONVSAM ------- TAX.BMF.MODULE.STAT.G4188V00
+      IN-CAT --- CATALOG.TAX.MASTER
+      HISTORY
+        DATASET-OWNER-----(NULL)     CREATION--------2026.241
+        RELEASE----------------2     EXPIRATION------0000.000
+        ACCOUNT-INFO-----------------------------------(NULL)
+      SMSDATA
+        STORAGECLASS -----SCBASE     MANAGEMENTCLASS---MCSTD
+        DATACLASS --------(NULL)     LBACKUP ---2026.240.0212
+      VOLUMES
+        VOLSER------------BMF001     DEVTYPE------X'3010200F'     FSEQN------------------0
+      ASSOCIATIONS--------(NULL)
+      ATTRIBUTES
+0NONVSAM ------- TAX.BMF.MODULE.STAT.G4187V00
+      IN-CAT --- CATALOG.TAX.MASTER
+      HISTORY
+        DATASET-OWNER-----(NULL)     CREATION--------2026.240
+        RELEASE----------------2     EXPIRATION------0000.000
+        ACCOUNT-INFO-----------------------------------(NULL)
+      SMSDATA
+        STORAGECLASS -----SCBASE     MANAGEMENTCLASS---MCSTD
+        DATACLASS --------(NULL)     LBACKUP ---2026.240.0212
+      VOLUMES
+        VOLSER------------BMF001     DEVTYPE------X'3010200F'     FSEQN------------------0
+      ASSOCIATIONS--------(NULL)
+      ATTRIBUTES
+0NONVSAM ------- TAX.BMF.MODULE.STAT.G4186V00
+      IN-CAT --- CATALOG.TAX.MASTER
+      HISTORY
+        DATASET-OWNER-----(NULL)     CREATION--------2026.239
+        RELEASE----------------2     EXPIRATION------0000.000
+        ACCOUNT-INFO-----------------------------------(NULL)
+      SMSDATA
+        STORAGECLASS -----SCBASE     MANAGEMENTCLASS---MCSTD
+        DATACLASS --------(NULL)     LBACKUP ---2026.240.0212
+      VOLUMES
+        VOLSER------------BMF001     DEVTYPE------X'3010200F'     FSEQN------------------0
+      ASSOCIATIONS--------(NULL)
+      ATTRIBUTES
+1IDCAMS  SYSTEM SERVICES                                           TIME: 02:14:07        08/29/26     PAGE      4
+-                             LISTING FROM CATALOG -- CATALOG.TAX.MASTER
+0GDG BASE ------ TAX.BMF.MODULE.FTD
+      IN-CAT --- CATALOG.TAX.MASTER
+      HISTORY
+        DATASET-OWNER-----(NULL)     CREATION--------2026.198
+        RELEASE----------------2     EXPIRATION------0000.000
+      ATTRIBUTES
+        LIMIT------------    5     SCRATCH       NOEMPTY       LIFO
+      ASSOCIATIONS
+        NONVSAM--TAX.BMF.MODULE.FTD.G4188V00
+        NONVSAM--TAX.BMF.MODULE.FTD.G4187V00
+        NONVSAM--TAX.BMF.MODULE.FTD.G4186V00
+0NONVSAM ------- TAX.BMF.MODULE.FTD.G4188V00
+      IN-CAT --- CATALOG.TAX.MASTER
+      HISTORY
+        DATASET-OWNER-----(NULL)     CREATION--------2026.241
+        RELEASE----------------2     EXPIRATION------0000.000
+        ACCOUNT-INFO-----------------------------------(NULL)
+      SMSDATA
+        STORAGECLASS -----SCBASE     MANAGEMENTCLASS---MCSTD
+        DATACLASS --------(NULL)     LBACKUP ---2026.240.0212
+      VOLUMES
+        VOLSER------------BMF001     DEVTYPE------X'3010200F'     FSEQN------------------0
+      ASSOCIATIONS--------(NULL)
+      ATTRIBUTES
+0NONVSAM ------- TAX.BMF.MODULE.FTD.G4187V00
+      IN-CAT --- CATALOG.TAX.MASTER
+      HISTORY
+        DATASET-OWNER-----(NULL)     CREATION--------2026.240
+        RELEASE----------------2     EXPIRATION------0000.000
+        ACCOUNT-INFO-----------------------------------(NULL)
+      SMSDATA
+        STORAGECLASS -----SCBASE     MANAGEMENTCLASS---MCSTD
+        DATACLASS --------(NULL)     LBACKUP ---2026.240.0212
+      VOLUMES
+        VOLSER------------BMF001     DEVTYPE------X'3010200F'     FSEQN------------------0
+      ASSOCIATIONS--------(NULL)
+      ATTRIBUTES
+0NONVSAM ------- TAX.BMF.MODULE.FTD.G4186V00
+      IN-CAT --- CATALOG.TAX.MASTER
+      HISTORY
+        DATASET-OWNER-----(NULL)     CREATION--------2026.239
+        RELEASE----------------2     EXPIRATION------0000.000
+        ACCOUNT-INFO-----------------------------------(NULL)
+      SMSDATA
+        STORAGECLASS -----SCBASE     MANAGEMENTCLASS---MCSTD
+        DATACLASS --------(NULL)     LBACKUP ---2026.240.0212
+      VOLUMES
+        VOLSER------------BMF001     DEVTYPE------X'3010200F'     FSEQN------------------0
+      ASSOCIATIONS--------(NULL)
+      ATTRIBUTES
+1IDCAMS  SYSTEM SERVICES                                           TIME: 02:14:07        08/29/26     PAGE      5
+-                             LISTING FROM CATALOG -- CATALOG.TAX.MASTER
+0GDG BASE ------ TAX.BMF.MODULE.PEN
+      IN-CAT --- CATALOG.TAX.MASTER
+      HISTORY
+        DATASET-OWNER-----(NULL)     CREATION--------2026.198
+        RELEASE----------------2     EXPIRATION------0000.000
+      ATTRIBUTES
+        LIMIT------------    5     SCRATCH       NOEMPTY       LIFO
+      ASSOCIATIONS
+        NONVSAM--TAX.BMF.MODULE.PEN.G4188V00
+        NONVSAM--TAX.BMF.MODULE.PEN.G4187V00
+        NONVSAM--TAX.BMF.MODULE.PEN.G4186V00
+0NONVSAM ------- TAX.BMF.MODULE.PEN.G4188V00
+      IN-CAT --- CATALOG.TAX.MASTER
+      HISTORY
+        DATASET-OWNER-----(NULL)     CREATION--------2026.241
+        RELEASE----------------2     EXPIRATION------0000.000
+        ACCOUNT-INFO-----------------------------------(NULL)
+      SMSDATA
+        STORAGECLASS -----SCBASE     MANAGEMENTCLASS---MCSTD
+        DATACLASS --------(NULL)     LBACKUP ---2026.240.0212
+      VOLUMES
+        VOLSER------------BMF001     DEVTYPE------X'3010200F'     FSEQN------------------0
+      ASSOCIATIONS--------(NULL)
+      ATTRIBUTES
+0NONVSAM ------- TAX.BMF.MODULE.PEN.G4187V00
+      IN-CAT --- CATALOG.TAX.MASTER
+      HISTORY
+        DATASET-OWNER-----(NULL)     CREATION--------2026.240
+        RELEASE----------------2     EXPIRATION------0000.000
+        ACCOUNT-INFO-----------------------------------(NULL)
+      SMSDATA
+        STORAGECLASS -----SCBASE     MANAGEMENTCLASS---MCSTD
+        DATACLASS --------(NULL)     LBACKUP ---2026.240.0212
+      VOLUMES
+        VOLSER------------BMF001     DEVTYPE------X'3010200F'     FSEQN------------------0
+      ASSOCIATIONS--------(NULL)
+      ATTRIBUTES
+0NONVSAM ------- TAX.BMF.MODULE.PEN.G4186V00
+      IN-CAT --- CATALOG.TAX.MASTER
+      HISTORY
+        DATASET-OWNER-----(NULL)     CREATION--------2026.239
+        RELEASE----------------2     EXPIRATION------0000.000
+        ACCOUNT-INFO-----------------------------------(NULL)
+      SMSDATA
+        STORAGECLASS -----SCBASE     MANAGEMENTCLASS---MCSTD
+        DATACLASS --------(NULL)     LBACKUP ---2026.240.0212
+      VOLUMES
+        VOLSER------------BMF001     DEVTYPE------X'3010200F'     FSEQN------------------0
+      ASSOCIATIONS--------(NULL)
+      ATTRIBUTES
+1IDCAMS  SYSTEM SERVICES                                           TIME: 02:14:07        08/29/26     PAGE      6
+-                             LISTING FROM CATALOG -- CATALOG.TAX.MASTER
+0GDG BASE ------ TAX.BMF.MODULE.EST
+      IN-CAT --- CATALOG.TAX.MASTER
+      HISTORY
+        DATASET-OWNER-----(NULL)     CREATION--------2026.198
+        RELEASE----------------2     EXPIRATION------0000.000
+      ATTRIBUTES
+        LIMIT------------    5     SCRATCH       NOEMPTY       LIFO
+      ASSOCIATIONS
+        NONVSAM--TAX.BMF.MODULE.EST.G4188V00
+        NONVSAM--TAX.BMF.MODULE.EST.G4187V00
+        NONVSAM--TAX.BMF.MODULE.EST.G4186V00
+0NONVSAM ------- TAX.BMF.MODULE.EST.G4188V00
+      IN-CAT --- CATALOG.TAX.MASTER
+      HISTORY
+        DATASET-OWNER-----(NULL)     CREATION--------2026.241
+        RELEASE----------------2     EXPIRATION------0000.000
+        ACCOUNT-INFO-----------------------------------(NULL)
+      SMSDATA
+        STORAGECLASS -----SCBASE     MANAGEMENTCLASS---MCSTD
+        DATACLASS --------(NULL)     LBACKUP ---2026.240.0212
+      VOLUMES
+        VOLSER------------BMF001     DEVTYPE------X'3010200F'     FSEQN------------------0
+      ASSOCIATIONS--------(NULL)
+      ATTRIBUTES
+0NONVSAM ------- TAX.BMF.MODULE.EST.G4187V00
+      IN-CAT --- CATALOG.TAX.MASTER
+      HISTORY
+        DATASET-OWNER-----(NULL)     CREATION--------2026.240
+        RELEASE----------------2     EXPIRATION------0000.000
+        ACCOUNT-INFO-----------------------------------(NULL)
+      SMSDATA
+        STORAGECLASS -----SCBASE     MANAGEMENTCLASS---MCSTD
+        DATACLASS --------(NULL)     LBACKUP ---2026.240.0212
+      VOLUMES
+        VOLSER------------BMF001     DEVTYPE------X'3010200F'     FSEQN------------------0
+      ASSOCIATIONS--------(NULL)
+      ATTRIBUTES
+0NONVSAM ------- TAX.BMF.MODULE.EST.G4186V00
+      IN-CAT --- CATALOG.TAX.MASTER
+      HISTORY
+        DATASET-OWNER-----(NULL)     CREATION--------2026.239
+        RELEASE----------------2     EXPIRATION------0000.000
+        ACCOUNT-INFO-----------------------------------(NULL)
+      SMSDATA
+        STORAGECLASS -----SCBASE     MANAGEMENTCLASS---MCSTD
+        DATACLASS --------(NULL)     LBACKUP ---2026.240.0212
+      VOLUMES
+        VOLSER------------BMF001     DEVTYPE------X'3010200F'     FSEQN------------------0
+      ASSOCIATIONS--------(NULL)
+      ATTRIBUTES
+1IDCAMS  SYSTEM SERVICES                                           TIME: 02:14:07        08/29/26     PAGE      7
+-                             LISTING FROM CATALOG -- CATALOG.TAX.MASTER
+0GDG BASE ------ TAX.BMF.MODULE.FRZ
+      IN-CAT --- CATALOG.TAX.MASTER
+      HISTORY
+        DATASET-OWNER-----(NULL)     CREATION--------2026.198
+        RELEASE----------------2     EXPIRATION------0000.000
+      ATTRIBUTES
+        LIMIT------------    5     SCRATCH       NOEMPTY       LIFO
+      ASSOCIATIONS
+        NONVSAM--TAX.BMF.MODULE.FRZ.G4188V00
+        NONVSAM--TAX.BMF.MODULE.FRZ.G4187V00
+        NONVSAM--TAX.BMF.MODULE.FRZ.G4186V00
+0NONVSAM ------- TAX.BMF.MODULE.FRZ.G4188V00
+      IN-CAT --- CATALOG.TAX.MASTER
+      HISTORY
+        DATASET-OWNER-----(NULL)     CREATION--------2026.241
+        RELEASE----------------2     EXPIRATION------0000.000
+        ACCOUNT-INFO-----------------------------------(NULL)
+      SMSDATA
+        STORAGECLASS -----SCBASE     MANAGEMENTCLASS---MCSTD
+        DATACLASS --------(NULL)     LBACKUP ---2026.240.0212
+      VOLUMES
+        VOLSER------------BMF001     DEVTYPE------X'3010200F'     FSEQN------------------0
+      ASSOCIATIONS--------(NULL)
+      ATTRIBUTES
+0NONVSAM ------- TAX.BMF.MODULE.FRZ.G4187V00
+      IN-CAT --- CATALOG.TAX.MASTER
+      HISTORY
+        DATASET-OWNER-----(NULL)     CREATION--------2026.240
+        RELEASE----------------2     EXPIRATION------0000.000
+        ACCOUNT-INFO-----------------------------------(NULL)
+      SMSDATA
+        STORAGECLASS -----SCBASE     MANAGEMENTCLASS---MCSTD
+        DATACLASS --------(NULL)     LBACKUP ---2026.240.0212
+      VOLUMES
+        VOLSER------------BMF001     DEVTYPE------X'3010200F'     FSEQN------------------0
+      ASSOCIATIONS--------(NULL)
+      ATTRIBUTES
+0NONVSAM ------- TAX.BMF.MODULE.FRZ.G4186V00
+      IN-CAT --- CATALOG.TAX.MASTER
+      HISTORY
+        DATASET-OWNER-----(NULL)     CREATION--------2026.239
+        RELEASE----------------2     EXPIRATION------0000.000
+        ACCOUNT-INFO-----------------------------------(NULL)
+      SMSDATA
+        STORAGECLASS -----SCBASE     MANAGEMENTCLASS---MCSTD
+        DATACLASS --------(NULL)     LBACKUP ---2026.240.0212
+      VOLUMES
+        VOLSER------------BMF001     DEVTYPE------X'3010200F'     FSEQN------------------0
+      ASSOCIATIONS--------(NULL)
+      ATTRIBUTES
+1IDCAMS  SYSTEM SERVICES                                           TIME: 02:14:07        08/29/26     PAGE      8
+-                             LISTING FROM CATALOG -- CATALOG.TAX.MASTER
+0GDG BASE ------ TAX.BMF.MODULE.INT
+      IN-CAT --- CATALOG.TAX.MASTER
+      HISTORY
+        DATASET-OWNER-----(NULL)     CREATION--------2026.198
+        RELEASE----------------2     EXPIRATION------0000.000
+      ATTRIBUTES
+        LIMIT------------    5     SCRATCH       NOEMPTY       LIFO
+      ASSOCIATIONS
+        NONVSAM--TAX.BMF.MODULE.INT.G4188V00
+        NONVSAM--TAX.BMF.MODULE.INT.G4187V00
+        NONVSAM--TAX.BMF.MODULE.INT.G4186V00
+0NONVSAM ------- TAX.BMF.MODULE.INT.G4188V00
+      IN-CAT --- CATALOG.TAX.MASTER
+      HISTORY
+        DATASET-OWNER-----(NULL)     CREATION--------2026.241
+        RELEASE----------------2     EXPIRATION------0000.000
+        ACCOUNT-INFO-----------------------------------(NULL)
+      SMSDATA
+        STORAGECLASS -----SCBASE     MANAGEMENTCLASS---MCSTD
+        DATACLASS --------(NULL)     LBACKUP ---2026.240.0212
+      VOLUMES
+        VOLSER------------BMF001     DEVTYPE------X'3010200F'     FSEQN------------------0
+      ASSOCIATIONS--------(NULL)
+      ATTRIBUTES
+0NONVSAM ------- TAX.BMF.MODULE.INT.G4187V00
+      IN-CAT --- CATALOG.TAX.MASTER
+      HISTORY
+        DATASET-OWNER-----(NULL)     CREATION--------2026.240
+        RELEASE----------------2     EXPIRATION------0000.000
+        ACCOUNT-INFO-----------------------------------(NULL)
+      SMSDATA
+        STORAGECLASS -----SCBASE     MANAGEMENTCLASS---MCSTD
+        DATACLASS --------(NULL)     LBACKUP ---2026.240.0212
+      VOLUMES
+        VOLSER------------BMF001     DEVTYPE------X'3010200F'     FSEQN------------------0
+      ASSOCIATIONS--------(NULL)
+      ATTRIBUTES
+0NONVSAM ------- TAX.BMF.MODULE.INT.G4186V00
+      IN-CAT --- CATALOG.TAX.MASTER
+      HISTORY
+        DATASET-OWNER-----(NULL)     CREATION--------2026.239
+        RELEASE----------------2     EXPIRATION------0000.000
+        ACCOUNT-INFO-----------------------------------(NULL)
+      SMSDATA
+        STORAGECLASS -----SCBASE     MANAGEMENTCLASS---MCSTD
+        DATACLASS --------(NULL)     LBACKUP ---2026.240.0212
+      VOLUMES
+        VOLSER------------BMF001     DEVTYPE------X'3010200F'     FSEQN------------------0
+      ASSOCIATIONS--------(NULL)
+      ATTRIBUTES
+1IDCAMS  SYSTEM SERVICES                                           TIME: 02:14:07        08/29/26     PAGE      9
+-                             LISTING FROM CATALOG -- CATALOG.TAX.MASTER
+0GDG BASE ------ TAX.BMF.MODULE.OFF
+      IN-CAT --- CATALOG.TAX.MASTER
+      HISTORY
+        DATASET-OWNER-----(NULL)     CREATION--------2026.198
+        RELEASE----------------2     EXPIRATION------0000.000
+      ATTRIBUTES
+        LIMIT------------    5     SCRATCH       NOEMPTY       LIFO
+      ASSOCIATIONS
+        NONVSAM--TAX.BMF.MODULE.OFF.G4188V00
+        NONVSAM--TAX.BMF.MODULE.OFF.G4187V00
+        NONVSAM--TAX.BMF.MODULE.OFF.G4186V00
+0NONVSAM ------- TAX.BMF.MODULE.OFF.G4188V00
+      IN-CAT --- CATALOG.TAX.MASTER
+      HISTORY
+        DATASET-OWNER-----(NULL)     CREATION--------2026.241
+        RELEASE----------------2     EXPIRATION------0000.000
+        ACCOUNT-INFO-----------------------------------(NULL)
+      SMSDATA
+        STORAGECLASS -----SCBASE     MANAGEMENTCLASS---MCSTD
+        DATACLASS --------(NULL)     LBACKUP ---2026.240.0212
+      VOLUMES
+        VOLSER------------BMF001     DEVTYPE------X'3010200F'     FSEQN------------------0
+      ASSOCIATIONS--------(NULL)
+      ATTRIBUTES
+0NONVSAM ------- TAX.BMF.MODULE.OFF.G4187V00
+      IN-CAT --- CATALOG.TAX.MASTER
+      HISTORY
+        DATASET-OWNER-----(NULL)     CREATION--------2026.240
+        RELEASE----------------2     EXPIRATION------0000.000
+        ACCOUNT-INFO-----------------------------------(NULL)
+      SMSDATA
+        STORAGECLASS -----SCBASE     MANAGEMENTCLASS---MCSTD
+        DATACLASS --------(NULL)     LBACKUP ---2026.240.0212
+      VOLUMES
+        VOLSER------------BMF001     DEVTYPE------X'3010200F'     FSEQN------------------0
+      ASSOCIATIONS--------(NULL)
+      ATTRIBUTES
+0NONVSAM ------- TAX.BMF.MODULE.OFF.G4186V00
+      IN-CAT --- CATALOG.TAX.MASTER
+      HISTORY
+        DATASET-OWNER-----(NULL)     CREATION--------2026.239
+        RELEASE----------------2     EXPIRATION------0000.000
+        ACCOUNT-INFO-----------------------------------(NULL)
+      SMSDATA
+        STORAGECLASS -----SCBASE     MANAGEMENTCLASS---MCSTD
+        DATACLASS --------(NULL)     LBACKUP ---2026.240.0212
+      VOLUMES
+        VOLSER------------BMF001     DEVTYPE------X'3010200F'     FSEQN------------------0
+      ASSOCIATIONS--------(NULL)
+      ATTRIBUTES
+0GDG BASE ------ TAX.BMF.ENTITY.VALID
+      IN-CAT --- CATALOG.TAX.MASTER
+      HISTORY
+        DATASET-OWNER-----(NULL)     CREATION--------2026.198
+        RELEASE----------------2     EXPIRATION------0000.000
+      ATTRIBUTES
+        LIMIT------------    5     SCRATCH       NOEMPTY       LIFO
+      ASSOCIATIONS
+        NONVSAM--TAX.BMF.ENTITY.VALID.G4188V00
+        NONVSAM--TAX.BMF.ENTITY.VALID.G4187V00
+        NONVSAM--TAX.BMF.ENTITY.VALID.G4186V00
+0NONVSAM ------- TAX.BMF.ENTITY.VALID.G4188V00
+      IN-CAT --- CATALOG.TAX.MASTER
+      HISTORY
+        DATASET-OWNER-----(NULL)     CREATION--------2026.241
+        RELEASE----------------2     EXPIRATION------0000.000
+        ACCOUNT-INFO-----------------------------------(NULL)
+      SMSDATA
+        STORAGECLASS -----SCBASE     MANAGEMENTCLASS---MCSTD
+        DATACLASS --------(NULL)     LBACKUP ---2026.240.0212
+      VOLUMES
+        VOLSER------------BMF001     DEVTYPE------X'3010200F'     FSEQN------------------0
+      ASSOCIATIONS--------(NULL)
+      ATTRIBUTES
+0NONVSAM ------- TAX.BMF.ENTITY.VALID.G4187V00
+      IN-CAT --- CATALOG.TAX.MASTER
+      HISTORY
+        DATASET-OWNER-----(NULL)     CREATION--------2026.240
+        RELEASE----------------2     EXPIRATION------0000.000
+        ACCOUNT-INFO-----------------------------------(NULL)
+      SMSDATA
+        STORAGECLASS -----SCBASE     MANAGEMENTCLASS---MCSTD
+        DATACLASS --------(NULL)     LBACKUP ---2026.240.0212
+      VOLUMES
+        VOLSER------------BMF001     DEVTYPE------X'3010200F'     FSEQN------------------0
+      ASSOCIATIONS--------(NULL)
+      ATTRIBUTES
+0NONVSAM ------- TAX.BMF.ENTITY.VALID.G4186V00
+      IN-CAT --- CATALOG.TAX.MASTER
+      HISTORY
+        DATASET-OWNER-----(NULL)     CREATION--------2026.239
+        RELEASE----------------2     EXPIRATION------0000.000
+        ACCOUNT-INFO-----------------------------------(NULL)
+      SMSDATA
+        STORAGECLASS -----SCBASE     MANAGEMENTCLASS---MCSTD
+        DATACLASS --------(NULL)     LBACKUP ---2026.240.0212
+      VOLUMES
+        VOLSER------------BMF001     DEVTYPE------X'3010200F'     FSEQN------------------0
+      ASSOCIATIONS--------(NULL)
+      ATTRIBUTES
+1IDCAMS  SYSTEM SERVICES                                           TIME: 02:14:07        08/29/26     PAGE     10
+-                             LISTING FROM CATALOG -- CATALOG.TAX.MASTER
+0GDG BASE ------ TAX.BMF.TRANS
+      IN-CAT --- CATALOG.TAX.MASTER
+      HISTORY
+        DATASET-OWNER-----(NULL)     CREATION--------2026.198
+        RELEASE----------------2     EXPIRATION------0000.000
+      ATTRIBUTES
+        LIMIT------------   10     SCRATCH       NOEMPTY       LIFO
+      ASSOCIATIONS
+        NONVSAM--TAX.BMF.TRANS.G4188V00
+        NONVSAM--TAX.BMF.TRANS.G4187V00
+        NONVSAM--TAX.BMF.TRANS.G4186V00
+        NONVSAM--TAX.BMF.TRANS.G4185V00
+0NONVSAM ------- TAX.BMF.TRANS.G4188V00
+      IN-CAT --- CATALOG.TAX.MASTER
+      HISTORY
+        DATASET-OWNER-----(NULL)     CREATION--------2026.241
+        RELEASE----------------2     EXPIRATION------0000.000
+        ACCOUNT-INFO-----------------------------------(NULL)
+      SMSDATA
+        STORAGECLASS -----SCBASE     MANAGEMENTCLASS---MCSTD
+        DATACLASS --------(NULL)     LBACKUP ---2026.240.0212
+      VOLUMES
+        VOLSER------------BMF001     DEVTYPE------X'3010200F'     FSEQN------------------0
+      ASSOCIATIONS--------(NULL)
+      ATTRIBUTES
+0NONVSAM ------- TAX.BMF.TRANS.G4187V00
+      IN-CAT --- CATALOG.TAX.MASTER
+      HISTORY
+        DATASET-OWNER-----(NULL)     CREATION--------2026.240
+        RELEASE----------------2     EXPIRATION------0000.000
+        ACCOUNT-INFO-----------------------------------(NULL)
+      SMSDATA
+        STORAGECLASS -----SCBASE     MANAGEMENTCLASS---MCSTD
+        DATACLASS --------(NULL)     LBACKUP ---2026.240.0212
+      VOLUMES
+        VOLSER------------BMF001     DEVTYPE------X'3010200F'     FSEQN------------------0
+      ASSOCIATIONS--------(NULL)
+      ATTRIBUTES
+0NONVSAM ------- TAX.BMF.TRANS.G4186V00
+      IN-CAT --- CATALOG.TAX.MASTER
+      HISTORY
+        DATASET-OWNER-----(NULL)     CREATION--------2026.239
+        RELEASE----------------2     EXPIRATION------0000.000
+        ACCOUNT-INFO-----------------------------------(NULL)
+      SMSDATA
+        STORAGECLASS -----SCBASE     MANAGEMENTCLASS---MCSTD
+        DATACLASS --------(NULL)     LBACKUP ---2026.240.0212
+      VOLUMES
+        VOLSER------------BMF001     DEVTYPE------X'3010200F'     FSEQN------------------0
+      ASSOCIATIONS--------(NULL)
+      ATTRIBUTES
+0NONVSAM ------- TAX.BMF.TRANS.G4185V00
+      IN-CAT --- CATALOG.TAX.MASTER
+      HISTORY
+        DATASET-OWNER-----(NULL)     CREATION--------2026.238
+        RELEASE----------------2     EXPIRATION------0000.000
+        ACCOUNT-INFO-----------------------------------(NULL)
+      SMSDATA
+        STORAGECLASS -----SCBASE     MANAGEMENTCLASS---MCSTD
+        DATACLASS --------(NULL)     LBACKUP ---2026.240.0212
+      VOLUMES
+        VOLSER------------BMF001     DEVTYPE------X'3010200F'     FSEQN------------------0
+      ASSOCIATIONS--------(NULL)
+      ATTRIBUTES
+1IDCAMS  SYSTEM SERVICES                                           TIME: 02:14:07        08/29/26     PAGE     11
+-                             LISTING FROM CATALOG -- CATALOG.TAX.MASTER
+0GDG BASE ------ TAX.BMF.NOTICE
+      IN-CAT --- CATALOG.TAX.MASTER
+      HISTORY
+        DATASET-OWNER-----(NULL)     CREATION--------2026.198
+        RELEASE----------------2     EXPIRATION------0000.000
+      ATTRIBUTES
+        LIMIT------------   10     SCRATCH       NOEMPTY       LIFO
+      ASSOCIATIONS
+        NONVSAM--TAX.BMF.NOTICE.G4188V00
+        NONVSAM--TAX.BMF.NOTICE.G4187V00
+        NONVSAM--TAX.BMF.NOTICE.G4186V00
+        NONVSAM--TAX.BMF.NOTICE.G4185V00
+0NONVSAM ------- TAX.BMF.NOTICE.G4188V00
+      IN-CAT --- CATALOG.TAX.MASTER
+      HISTORY
+        DATASET-OWNER-----(NULL)     CREATION--------2026.241
+        RELEASE----------------2     EXPIRATION------0000.000
+        ACCOUNT-INFO-----------------------------------(NULL)
+      SMSDATA
+        STORAGECLASS -----SCBASE     MANAGEMENTCLASS---MCSTD
+        DATACLASS --------(NULL)     LBACKUP ---2026.240.0212
+      VOLUMES
+        VOLSER------------BMF001     DEVTYPE------X'3010200F'     FSEQN------------------0
+      ASSOCIATIONS--------(NULL)
+      ATTRIBUTES
+0NONVSAM ------- TAX.BMF.NOTICE.G4187V00
+      IN-CAT --- CATALOG.TAX.MASTER
+      HISTORY
+        DATASET-OWNER-----(NULL)     CREATION--------2026.240
+        RELEASE----------------2     EXPIRATION------0000.000
+        ACCOUNT-INFO-----------------------------------(NULL)
+      SMSDATA
+        STORAGECLASS -----SCBASE     MANAGEMENTCLASS---MCSTD
+        DATACLASS --------(NULL)     LBACKUP ---2026.240.0212
+      VOLUMES
+        VOLSER------------BMF001     DEVTYPE------X'3010200F'     FSEQN------------------0
+      ASSOCIATIONS--------(NULL)
+      ATTRIBUTES
+0NONVSAM ------- TAX.BMF.NOTICE.G4186V00
+      IN-CAT --- CATALOG.TAX.MASTER
+      HISTORY
+        DATASET-OWNER-----(NULL)     CREATION--------2026.239
+        RELEASE----------------2     EXPIRATION------0000.000
+        ACCOUNT-INFO-----------------------------------(NULL)
+      SMSDATA
+        STORAGECLASS -----SCBASE     MANAGEMENTCLASS---MCSTD
+        DATACLASS --------(NULL)     LBACKUP ---2026.240.0212
+      VOLUMES
+        VOLSER------------BMF001     DEVTYPE------X'3010200F'     FSEQN------------------0
+      ASSOCIATIONS--------(NULL)
+      ATTRIBUTES
+0NONVSAM ------- TAX.BMF.NOTICE.G4185V00
+      IN-CAT --- CATALOG.TAX.MASTER
+      HISTORY
+        DATASET-OWNER-----(NULL)     CREATION--------2026.238
+        RELEASE----------------2     EXPIRATION------0000.000
+        ACCOUNT-INFO-----------------------------------(NULL)
+      SMSDATA
+        STORAGECLASS -----SCBASE     MANAGEMENTCLASS---MCSTD
+        DATACLASS --------(NULL)     LBACKUP ---2026.240.0212
+      VOLUMES
+        VOLSER------------BMF001     DEVTYPE------X'3010200F'     FSEQN------------------0
+      ASSOCIATIONS--------(NULL)
+      ATTRIBUTES
+1IDCAMS  SYSTEM SERVICES                                           TIME: 02:14:07        08/29/26     PAGE     12
+-                             LISTING FROM CATALOG -- CATALOG.TAX.MASTER
+0GDG BASE ------ TAX.BMF.ENTVAL.REJECTS
+      IN-CAT --- CATALOG.TAX.MASTER
+      HISTORY
+        DATASET-OWNER-----(NULL)     CREATION--------2026.198
+        RELEASE----------------2     EXPIRATION------0000.000
+      ATTRIBUTES
+        LIMIT------------   30     SCRATCH       NOEMPTY       LIFO
+      ASSOCIATIONS
+        NONVSAM--TAX.BMF.ENTVAL.REJECTS.G4188V00
+        NONVSAM--TAX.BMF.ENTVAL.REJECTS.G4187V00
+        NONVSAM--TAX.BMF.ENTVAL.REJECTS.G4186V00
+        NONVSAM--TAX.BMF.ENTVAL.REJECTS.G4185V00
+0NONVSAM ------- TAX.BMF.ENTVAL.REJECTS.G4188V00
+      IN-CAT --- CATALOG.TAX.MASTER
+      HISTORY
+        DATASET-OWNER-----(NULL)     CREATION--------2026.241
+        RELEASE----------------2     EXPIRATION------0000.000
+        ACCOUNT-INFO-----------------------------------(NULL)
+      SMSDATA
+        STORAGECLASS -----SCBASE     MANAGEMENTCLASS---MCSTD
+        DATACLASS --------(NULL)     LBACKUP ---2026.240.0212
+      VOLUMES
+        VOLSER------------BMF001     DEVTYPE------X'3010200F'     FSEQN------------------0
+      ASSOCIATIONS--------(NULL)
+      ATTRIBUTES
+0NONVSAM ------- TAX.BMF.ENTVAL.REJECTS.G4187V00
+      IN-CAT --- CATALOG.TAX.MASTER
+      HISTORY
+        DATASET-OWNER-----(NULL)     CREATION--------2026.240
+        RELEASE----------------2     EXPIRATION------0000.000
+        ACCOUNT-INFO-----------------------------------(NULL)
+      SMSDATA
+        STORAGECLASS -----SCBASE     MANAGEMENTCLASS---MCSTD
+        DATACLASS --------(NULL)     LBACKUP ---2026.240.0212
+      VOLUMES
+        VOLSER------------BMF001     DEVTYPE------X'3010200F'     FSEQN------------------0
+      ASSOCIATIONS--------(NULL)
+      ATTRIBUTES
+0NONVSAM ------- TAX.BMF.ENTVAL.REJECTS.G4186V00
+      IN-CAT --- CATALOG.TAX.MASTER
+      HISTORY
+        DATASET-OWNER-----(NULL)     CREATION--------2026.239
+        RELEASE----------------2     EXPIRATION------0000.000
+        ACCOUNT-INFO-----------------------------------(NULL)
+      SMSDATA
+        STORAGECLASS -----SCBASE     MANAGEMENTCLASS---MCSTD
+        DATACLASS --------(NULL)     LBACKUP ---2026.240.0212
+      VOLUMES
+        VOLSER------------BMF001     DEVTYPE------X'3010200F'     FSEQN------------------0
+      ASSOCIATIONS--------(NULL)
+      ATTRIBUTES
+0NONVSAM ------- TAX.BMF.ENTVAL.REJECTS.G4185V00
+      IN-CAT --- CATALOG.TAX.MASTER
+      HISTORY
+        DATASET-OWNER-----(NULL)     CREATION--------2026.238
+        RELEASE----------------2     EXPIRATION------0000.000
+        ACCOUNT-INFO-----------------------------------(NULL)
+      SMSDATA
+        STORAGECLASS -----SCBASE     MANAGEMENTCLASS---MCSTD
+        DATACLASS --------(NULL)     LBACKUP ---2026.240.0212
+      VOLUMES
+        VOLSER------------BMF001     DEVTYPE------X'3010200F'     FSEQN------------------0
+      ASSOCIATIONS--------(NULL)
+      ATTRIBUTES
+1IDCAMS  SYSTEM SERVICES                                           TIME: 02:14:07        08/29/26     PAGE     13
+-                             LISTING FROM CATALOG -- CATALOG.TAX.MASTER
+0GDG BASE ------ TAX.BMF.DUPCHK.REJECTS
+      IN-CAT --- CATALOG.TAX.MASTER
+      HISTORY
+        DATASET-OWNER-----(NULL)     CREATION--------2026.198
+        RELEASE----------------2     EXPIRATION------0000.000
+      ATTRIBUTES
+        LIMIT------------   30     SCRATCH       NOEMPTY       LIFO
+      ASSOCIATIONS
+        NONVSAM--TAX.BMF.DUPCHK.REJECTS.G4188V00
+        NONVSAM--TAX.BMF.DUPCHK.REJECTS.G4187V00
+        NONVSAM--TAX.BMF.DUPCHK.REJECTS.G4186V00
+        NONVSAM--TAX.BMF.DUPCHK.REJECTS.G4185V00
+0NONVSAM ------- TAX.BMF.DUPCHK.REJECTS.G4188V00
+      IN-CAT --- CATALOG.TAX.MASTER
+      HISTORY
+        DATASET-OWNER-----(NULL)     CREATION--------2026.241
+        RELEASE----------------2     EXPIRATION------0000.000
+        ACCOUNT-INFO-----------------------------------(NULL)
+      SMSDATA
+        STORAGECLASS -----SCBASE     MANAGEMENTCLASS---MCSTD
+        DATACLASS --------(NULL)     LBACKUP ---2026.240.0212
+      VOLUMES
+        VOLSER------------BMF001     DEVTYPE------X'3010200F'     FSEQN------------------0
+      ASSOCIATIONS--------(NULL)
+      ATTRIBUTES
+0NONVSAM ------- TAX.BMF.DUPCHK.REJECTS.G4187V00
+      IN-CAT --- CATALOG.TAX.MASTER
+      HISTORY
+        DATASET-OWNER-----(NULL)     CREATION--------2026.240
+        RELEASE----------------2     EXPIRATION------0000.000
+        ACCOUNT-INFO-----------------------------------(NULL)
+      SMSDATA
+        STORAGECLASS -----SCBASE     MANAGEMENTCLASS---MCSTD
+        DATACLASS --------(NULL)     LBACKUP ---2026.240.0212
+      VOLUMES
+        VOLSER------------BMF001     DEVTYPE------X'3010200F'     FSEQN------------------0
+      ASSOCIATIONS--------(NULL)
+      ATTRIBUTES
+0NONVSAM ------- TAX.BMF.DUPCHK.REJECTS.G4186V00
+      IN-CAT --- CATALOG.TAX.MASTER
+      HISTORY
+        DATASET-OWNER-----(NULL)     CREATION--------2026.239
+        RELEASE----------------2     EXPIRATION------0000.000
+        ACCOUNT-INFO-----------------------------------(NULL)
+      SMSDATA
+        STORAGECLASS -----SCBASE     MANAGEMENTCLASS---MCSTD
+        DATACLASS --------(NULL)     LBACKUP ---2026.240.0212
+      VOLUMES
+        VOLSER------------BMF001     DEVTYPE------X'3010200F'     FSEQN------------------0
+      ASSOCIATIONS--------(NULL)
+      ATTRIBUTES
+0NONVSAM ------- TAX.BMF.DUPCHK.REJECTS.G4185V00
+      IN-CAT --- CATALOG.TAX.MASTER
+      HISTORY
+        DATASET-OWNER-----(NULL)     CREATION--------2026.238
+        RELEASE----------------2     EXPIRATION------0000.000
+        ACCOUNT-INFO-----------------------------------(NULL)
+      SMSDATA
+        STORAGECLASS -----SCBASE     MANAGEMENTCLASS---MCSTD
+        DATACLASS --------(NULL)     LBACKUP ---2026.240.0212
+      VOLUMES
+        VOLSER------------BMF001     DEVTYPE------X'3010200F'     FSEQN------------------0
+      ASSOCIATIONS--------(NULL)
+      ATTRIBUTES
+1IDCAMS  SYSTEM SERVICES                                           TIME: 02:14:07        08/29/26     PAGE     14
+-                             LISTING FROM CATALOG -- CATALOG.TAX.MASTER
+0
+0NONVSAM ------- TAX.BMF.ENTITY.MASTER
+      IN-CAT --- CATALOG.TAX.MASTER
+      HISTORY
+        DATASET-OWNER-----(NULL)     CREATION--------2026.198
+        RELEASE----------------2     EXPIRATION------0000.000
+        ACCOUNT-INFO-----------------------------------(NULL)
+      SMSDATA
+        STORAGECLASS -----SCBASE     MANAGEMENTCLASS---MCSTD
+        DATACLASS --------(NULL)     LBACKUP ---2026.240.0212
+      VOLUMES
+        VOLSER------------BMF001     DEVTYPE------X'3010200F'     FSEQN------------------0
+      ASSOCIATIONS--------(NULL)
+      ATTRIBUTES
+0NONVSAM ------- TAX.SSA.W2.TOTALS
+      IN-CAT --- CATALOG.TAX.MASTER
+      HISTORY
+        DATASET-OWNER-----(NULL)     CREATION--------2026.213
+        RELEASE----------------2     EXPIRATION------0000.000
+        ACCOUNT-INFO-----------------------------------(NULL)
+      SMSDATA
+        STORAGECLASS -----SCBASE     MANAGEMENTCLASS---MCSTD
+        DATACLASS --------(NULL)     LBACKUP ---2026.240.0212
+      VOLUMES
+        VOLSER------------BMF004     DEVTYPE------X'3010200F'     FSEQN------------------0
+      ASSOCIATIONS--------(NULL)
+      ATTRIBUTES
+0NONVSAM ------- TAX.FMS.DEBTS
+      IN-CAT --- CATALOG.TAX.MASTER
+      HISTORY
+        DATASET-OWNER-----(NULL)     CREATION--------2026.240
+        RELEASE----------------2     EXPIRATION------0000.000
+        ACCOUNT-INFO-----------------------------------(NULL)
+      SMSDATA
+        STORAGECLASS -----SCBASE     MANAGEMENTCLASS---MCSTD
+        DATACLASS --------(NULL)     LBACKUP ---2026.240.0212
+      VOLUMES
+        VOLSER------------BMF004     DEVTYPE------X'3010200F'     FSEQN------------------0
+      ASSOCIATIONS--------(NULL)
+      ATTRIBUTES
+0NONVSAM ------- TAX.BMF.CTLLIB
+      IN-CAT --- CATALOG.TAX.MASTER
+      HISTORY
+        DATASET-OWNER-----(NULL)     CREATION--------2026.198
+        RELEASE----------------2     EXPIRATION------0000.000
+        ACCOUNT-INFO-----------------------------------(NULL)
+      SMSDATA
+        STORAGECLASS -----SCBASE     MANAGEMENTCLASS---MCSTD
+        DATACLASS --------(NULL)     LBACKUP ---2026.240.0212
+      VOLUMES
+        VOLSER------------BMF001     DEVTYPE------X'3010200F'     FSEQN------------------0
+      ASSOCIATIONS--------(NULL)
+      ATTRIBUTES
+0NONVSAM ------- TAX.BMF.LOADLIB
+      IN-CAT --- CATALOG.TAX.MASTER
+      HISTORY
+        DATASET-OWNER-----(NULL)     CREATION--------2026.198
+        RELEASE----------------2     EXPIRATION------0000.000
+        ACCOUNT-INFO-----------------------------------(NULL)
+      SMSDATA
+        STORAGECLASS -----SCBASE     MANAGEMENTCLASS---MCSTD
+        DATACLASS --------(NULL)     LBACKUP ---2026.240.0212
+      VOLUMES
+        VOLSER------------BMF001     DEVTYPE------X'3010200F'     FSEQN------------------0
+      ASSOCIATIONS--------(NULL)
+      ATTRIBUTES
+0NONVSAM ------- TAX.BMF.PROCLIB
+      IN-CAT --- CATALOG.TAX.MASTER
+      HISTORY
+        DATASET-OWNER-----(NULL)     CREATION--------2026.198
+        RELEASE----------------2     EXPIRATION------0000.000
+        ACCOUNT-INFO-----------------------------------(NULL)
+      SMSDATA
+        STORAGECLASS -----SCBASE     MANAGEMENTCLASS---MCSTD
+        DATACLASS --------(NULL)     LBACKUP ---2026.240.0212
+      VOLUMES
+        VOLSER------------BMF001     DEVTYPE------X'3010200F'     FSEQN------------------0
+      ASSOCIATIONS--------(NULL)
+      ATTRIBUTES
+1IDCAMS  SYSTEM SERVICES                                           TIME: 02:14:07        08/29/26     PAGE     15
+0         THE NUMBER OF ENTRIES PROCESSED WAS:
+                     AIX -------------------0
+                     ALIAS -----------------0
+                     CLUSTER ---------------0
+                     DATA ------------------0
+                     GDG ------------------14
+                     INDEX -----------------0
+                     NONVSAM --------------52
+                     PAGESPACE -------------0
+                     PATH ------------------0
+                     SPACE -----------------0
+                     USERCATALOG -----------0
+                     TAPELIBRARY -----------0
+                     TAPEVOLUME ------------0
+                     TOTAL ----------------66
+0
+0         THE NUMBER OF PROTECTED ENTRIES SUPPRESSED WAS 0
+0IDC0001I FUNCTION COMPLETED, HIGHEST CONDITION CODE WAS 0
+0
+0IDC0002I IDCAMS PROCESSING COMPLETE. MAXIMUM CONDITION CODE WAS 0
