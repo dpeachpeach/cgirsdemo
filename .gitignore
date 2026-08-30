@@ -1,0 +1,5 @@
+bin/
+ANSWERS.md
+*.o
+*.so
+data/out/
