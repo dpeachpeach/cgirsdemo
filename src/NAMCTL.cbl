@@ -46,7 +46,7 @@
                MOVE WK03 TO WK05
            END-PERFORM.
        2000-DROPTHE.
-           IF WK01(1:4) = "THE " AND WK04 > 2
+           IF WK01(1:4) = "THE "
                MOVE WK01(5:31) TO WK01
            END-IF.
        3000-SQUEEZE.

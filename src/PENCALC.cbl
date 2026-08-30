@@ -197,6 +197,7 @@
                END-IF
                IF WF51 < WMIN
                    MOVE WMIN TO WF51
+                   SUBTRACT WF52 FROM WF51
                    ADD 1 TO Q4
                    MOVE BMF-EIN TO PR-EIN
                    MOVE BMF-MFT TO PR-MFT

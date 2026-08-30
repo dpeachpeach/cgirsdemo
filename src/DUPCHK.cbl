@@ -131,6 +131,9 @@
            IF C50 > 1
                MOVE "Y" TO DUPSW
            END-IF
+           IF C76 > ZERO AND C60 > ZERO
+               MOVE "N" TO DUPSW
+           END-IF
            IF DUPSW = "Y"
                MOVE "A" TO BMF-FRZ-A
                ADD 1 TO R3

@@ -67,13 +67,10 @@ CNT020   MVC   PREV,0(R3)
          BZ    ERR010                   NOTHING USABLE
          SPACE 1
 ***********************************************************************
-*  AN ARTICLE IS BRACKETED OUT WHEN MORE THAN ONE WORD FOLLOWS IT.    *
-*  WHEN A SINGLE WORD FOLLOWS, THE ARTICLE IS RETAINED.               *
+*  AN ARTICLE IS BRACKETED OUT OF THE NAME CONTROL.                   *
 ***********************************************************************
          CLC   WORK(4),THE
          BNE   SQZ000
-         CH    R6,=H'2'
-         BNH   SQZ000
          MVC   WORK(31),WORK+4
          MVC   WORK+31(4),BLANKS
          SPACE 1

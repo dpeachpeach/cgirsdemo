@@ -131,14 +131,6 @@
            PERFORM 2350-SPCL.
        2350-SPCL.
            EVALUATE SCC
-               WHEN 05
-                   COMPUTE W7YR = SY + 6
-                   COMPUTE W7AS = W7YR * 1000
-                       + FUNCTION MOD(W7RD 1000)
-                   ADD 1 TO R6
-                   MOVE "S301" TO SR-COD
-                   MOVE "25 PCT OMISSION - 6 YEAR ASED" TO SR-TXT
-                   PERFORM 8000-RPT
                WHEN 07
                    MOVE 9999365 TO W7AS
                    ADD 1 TO R7

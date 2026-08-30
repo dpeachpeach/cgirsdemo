@@ -201,7 +201,7 @@
                            MOVE 4 TO PW-TIER
                            MOVE 0.1500 TO PW-RT
                        END-IF
-                       IF WBYP = "N" AND BMF-ASSD NOT < 2500
+                       IF WBYP = "N" AND BMF-ASSD NOT < 1000
                            MOVE TRN-AMT TO PA-BAS
                            MOVE PW-RT TO PA-RT
                            CALL "PENACC" USING PA-PARM
@@ -221,7 +221,7 @@
                PERFORM 8100-RDTRN
            END-PERFORM
            COMPUTE WSHT = BMF-ASSD - WTOT
-           IF BMF-ASSD < 2500
+           IF BMF-ASSD < 1000
                ADD 1 TO R4
                MOVE BMF-EIN TO FR-EIN
                MOVE BMF-MFT TO FR-MFT
