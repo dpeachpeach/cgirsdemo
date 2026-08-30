@@ -36,14 +36,14 @@
        01  N3                      PIC 9(6) VALUE ZERO.
        01  N4                      PIC 9(6) VALUE ZERO.
        01  CYCDT                   PIC 9(8) VALUE 20260815.
-       01  OVP                     PIC S9(11)V99 COMP-3.
-       01  LIA                     PIC S9(11)V99 COMP-3.
-       01  INTA                    PIC S9(9)V99 COMP-3.
-       01  AVDT                    PIC 9(8).
+       01  WOVP                     PIC S9(11)V99 COMP-3.
+       01  WLIA                     PIC S9(11)V99 COMP-3.
+       01  WINT                    PIC S9(9)V99 COMP-3.
+       01  WAVD                    PIC 9(8).
        01  IAV                     PIC S9(9) COMP.
        01  ICY                     PIC S9(9) COMP.
-       01  NDY                     PIC S9(5) COMP.
-       01  ARATE                   PIC S9(1)V9(4) COMP-3.
+       01  WNDY                     PIC S9(5) COMP.
+       01  WRT7                   PIC S9(1)V9(4) COMP-3.
        01  XY                      PIC 9(4).
        01  XM                      PIC 9(2).
        01  DV-PARM.
@@ -93,16 +93,12 @@
                    ADD 1 TO N2
            END-READ.
        2100-INT.
-           MOVE ZERO TO INTA
-           COMPUTE LIA = BMF-ASSD + BMF-PFTD + BMF-PFTF + BMF-PFTP
-           COMPUTE OVP = BMF-DEP + BMF-CRD - LIA
-           IF OVP NOT > ZERO
+           MOVE ZERO TO WINT
+           COMPUTE WLIA = BMF-ASSD + BMF-PFTD + BMF-PFTF + BMF-PFTP
+           COMPUTE WOVP = BMF-DEP + BMF-CRD - WLIA
+           IF WOVP NOT > ZERO
                GO TO 2100-X
            END-IF
-      *
-      *    AVAILABILITY DATE.  THE RETURN DUE DATE, MOVED TO THE NEXT
-      *    BUSINESS DAY UNDER IRC 7503.
-      *
            MOVE BMF-TXPD(1:4) TO XY
            MOVE BMF-TXPD(5:2) TO XM
            ADD 1 TO XM
@@ -113,46 +109,39 @@
            COMPUTE DVP-GREG = XY * 10000 + XM * 100 + 15
            MOVE "B" TO DVP-FUNC
            CALL "DATECNV" USING DV-PARM
-           MOVE DVP-GREG TO AVDT
-           COMPUTE IAV = FUNCTION INTEGER-OF-DATE(AVDT)
+           MOVE DVP-GREG TO WAVD
+           COMPUTE IAV = FUNCTION INTEGER-OF-DATE(WAVD)
            COMPUTE ICY = FUNCTION INTEGER-OF-DATE(CYCDT)
-           COMPUTE NDY = ICY - IAV
-      *
-      *    IRC 6611(E) 45 DAY RULE.
-      *
-           IF NDY NOT > 45
+           COMPUTE WNDY = ICY - IAV
+           IF WNDY NOT > 45
                ADD 1 TO N4
                MOVE BMF-EIN TO OR-EIN
                MOVE BMF-MFT TO OR-MFT
                MOVE BMF-TXPD TO OR-TXPD
                MOVE "O801" TO OR-COD
                MOVE "45 DAY RULE - NO INTEREST" TO OR-TXT
-               MOVE OVP TO OR-OVP
-               MOVE NDY TO OR-DAYS
+               MOVE WOVP TO OR-OVP
+               MOVE WNDY TO OR-DAYS
                MOVE ZERO TO OR-INT
                WRITE OIRPT-REC FROM ORPT
                GO TO 2100-X
            END-IF
-      *
-      *    IRC 6611(B)(2).  INTEREST STOPS NOT MORE THAN 30 DAYS
-      *    BEFORE THE DATE OF THE REFUND SCHEDULE.
-      *
-           SUBTRACT 30 FROM NDY
-           IF NDY NOT > ZERO
+           SUBTRACT 30 FROM WNDY
+           IF WNDY NOT > ZERO
                GO TO 2100-X
            END-IF
-           MOVE 0.0700 TO ARATE
-           COMPUTE INTA ROUNDED = OVP * ARATE * NDY / 365
-           MOVE INTA TO BMF-INT
+           MOVE 0.0700 TO WRT7
+           COMPUTE WINT ROUNDED = WOVP * WRT7 * WNDY / 365
+           MOVE WINT TO BMF-INT
            ADD 1 TO N3
            MOVE BMF-EIN TO OR-EIN
            MOVE BMF-MFT TO OR-MFT
            MOVE BMF-TXPD TO OR-TXPD
            MOVE "O802" TO OR-COD
            MOVE "OVERPAYMENT INTEREST ALLOWED" TO OR-TXT
-           MOVE OVP TO OR-OVP
-           MOVE NDY TO OR-DAYS
-           MOVE INTA TO OR-INT
+           MOVE WOVP TO OR-OVP
+           MOVE WNDY TO OR-DAYS
+           MOVE WINT TO OR-INT
            WRITE OIRPT-REC FROM ORPT.
        2100-X.
            EXIT.

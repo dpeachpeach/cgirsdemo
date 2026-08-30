@@ -4,6 +4,7 @@
       *    DUPLICATE FILING CONDITION - TC 150/976/977                *
       *    SETS -A FREEZE.  APPLIES TC 560 ASED CORRECTION.           *
       *    STEP 020.  INPUT MUST BE SORTED EIN/MFT/TXPD.              *
+      *    TC 976 ONLY UNTIL 11/89. TC 977 ADDED FOR ELF RETURNS.     *
       *****************************************************************
        ENVIRONMENT DIVISION.
        INPUT-OUTPUT SECTION.
@@ -102,16 +103,10 @@
            PERFORM 2400-EVAL
            WRITE MODOT-REC FROM BMF-MOD-REC
            ADD 1 TO R2.
-      *
-      *    DISCARD TRANSACTIONS THAT SORT LOW - NO MODULE ON FILE.
-      *
        2200-SKIP.
            PERFORM UNTIL TEOF = "Y" OR TKEY NOT < MKEY
                PERFORM 8100-RDTRN
            END-PERFORM.
-      *
-      *    ACCUMULATE THE TRANSACTIONS BELONGING TO THIS MODULE.
-      *
        2300-GATHER.
            PERFORM UNTIL TEOF = "Y" OR TKEY NOT = MKEY
                EVALUATE TRN-TC
@@ -129,11 +124,6 @@
                ADD 1 TO BMF-TCCNT
                PERFORM 8100-RDTRN
            END-PERFORM.
-      *
-      *    IRM 21.7.9.  A TC 976 OR TC 977 POSTING TO A MODULE THAT
-      *    ALREADY CARRIES A TC 150 IS A DUPLICATE FILING CONDITION
-      *    AND SETS THE -A FREEZE.
-      *
        2400-EVAL.
            IF C50 > ZERO AND (C76 > ZERO OR C77 > ZERO)
                MOVE "Y" TO DUPSW
@@ -155,10 +145,6 @@
                WRITE DUPRPT-REC FROM DRPT
            END-IF
            PERFORM 2500-ASED.
-      *
-      *    TC 560 CARRIES A CORRECTED ASED.  IT REPLACES THE MODULE
-      *    ASED ONLY WHEN IT EXTENDS THE PERIOD.
-      *
        2500-ASED.
            IF C60 > ZERO
                MOVE BMF-ASED TO W-ASED

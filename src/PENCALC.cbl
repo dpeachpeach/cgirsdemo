@@ -4,6 +4,7 @@
       *    FAILURE TO FILE / FAILURE TO PAY - IRC 6651                *
       *    STEP 050.  FTF 5 PCT PER MONTH CAPPED AT 25 PCT.           *
       *    FTP 1/2 PCT PER MONTH.  FTF IS REDUCED BY FTP FOR ANY      *
+      *    MINIMUM PENALTY FLOOR LAST UPLIFTED 01/16 - SEE RUN BOOK   *
       *    MONTH IN WHICH BOTH APPLY - IRC 6651(C)(1).                *
       *****************************************************************
        ENVIRONMENT DIVISION.
@@ -46,12 +47,12 @@
        01  MKEY                    PIC X(17).
        01  TKEY                    PIC X(17).
        01  D150                    PIC 9(7).
-       01  UPD                     PIC S9(11)V99 COMP-3.
-       01  FTFA                    PIC S9(9)V99 COMP-3.
-       01  FTPA                    PIC S9(9)V99 COMP-3.
-       01  MINP                    PIC S9(9)V99 COMP-3.
-       01  MOL                     PIC S9(3) COMP.
-       01  DLD                     PIC S9(5) COMP.
+       01  WUPD                     PIC S9(11)V99 COMP-3.
+       01  WF51                    PIC S9(9)V99 COMP-3.
+       01  WF52                    PIC S9(9)V99 COMP-3.
+       01  WMIN                    PIC S9(9)V99 COMP-3.
+       01  WMOL                     PIC S9(3) COMP.
+       01  WDLD                     PIC S9(5) COMP.
        01  GG                      PIC 9(8).
        01  GR                      PIC 9(8).
        01  IG                      PIC S9(9) COMP.
@@ -107,10 +108,10 @@
        2100-PEN.
            MOVE BMF-KEY TO MKEY
            MOVE ZERO TO D150
-           MOVE ZERO TO FTFA
-           MOVE ZERO TO FTPA
-           MOVE ZERO TO MINP
-           MOVE ZERO TO MOL
+           MOVE ZERO TO WF51
+           MOVE ZERO TO WF52
+           MOVE ZERO TO WMIN
+           MOVE ZERO TO WMOL
            PERFORM UNTIL TEOF = "Y" OR TKEY NOT < MKEY
                PERFORM 8100-RDTRN
            END-PERFORM
@@ -120,36 +121,32 @@
                END-IF
                PERFORM 8100-RDTRN
            END-PERFORM
-           COMPUTE UPD = BMF-ASSD - BMF-DEP - BMF-CRD
-           IF UPD < ZERO
-               MOVE ZERO TO UPD
+           COMPUTE WUPD = BMF-ASSD - BMF-DEP - BMF-CRD
+           IF WUPD < ZERO
+               MOVE ZERO TO WUPD
            END-IF
            PERFORM 2200-MONTHS THRU 2200-X
-           IF MOL > ZERO AND UPD > ZERO
+           IF WMOL > ZERO AND WUPD > ZERO
                PERFORM 2300-FTF
                PERFORM 2400-FTP
                PERFORM 2500-OFFSET
                PERFORM 2600-MIN
-               MOVE FTFA TO BMF-PFTF
-               MOVE FTPA TO BMF-PFTP
+               MOVE WF51 TO BMF-PFTF
+               MOVE WF52 TO BMF-PFTP
                ADD 1 TO Q3
                MOVE BMF-EIN TO PR-EIN
                MOVE BMF-MFT TO PR-MFT
                MOVE BMF-TXPD TO PR-TXPD
                MOVE "P501" TO PR-COD
                MOVE "FTF/FTP ASSESSED" TO PR-TXT
-               MOVE MOL TO PR-MO
-               MOVE FTFA TO PR-FTF
-               MOVE FTPA TO PR-FTP
+               MOVE WMOL TO PR-MO
+               MOVE WF51 TO PR-FTF
+               MOVE WF52 TO PR-FTP
                WRITE PNRPT-REC FROM PRPT
            END-IF.
-      *
-      *    DELINQUENCY IN MONTHS OR FRACTION THEREOF, RETURN DUE DATE
-      *    TO THE POSTING DATE OF THE TC 150.
-      *
        2200-MONTHS.
            IF D150 = ZERO
-               MOVE ZERO TO MOL
+               MOVE ZERO TO WMOL
                GO TO 2200-X
            END-IF
            MOVE BMF-TXPD(1:4) TO VY
@@ -167,64 +164,48 @@
            MOVE DCP-GREG TO GG
            COMPUTE IG = FUNCTION INTEGER-OF-DATE(GG)
            COMPUTE IR = FUNCTION INTEGER-OF-DATE(GR)
-           COMPUTE DLD = IG - IR
-           IF DLD < 1
-               MOVE ZERO TO MOL
+           COMPUTE WDLD = IG - IR
+           IF WDLD < 1
+               MOVE ZERO TO WMOL
            ELSE
-               COMPUTE MOL = (DLD / 30) + 1
+               COMPUTE WMOL = (WDLD / 30) + 1
            END-IF.
        2200-X.
            EXIT.
-      *
-      *    FTF 5 PCT PER MONTH, MAXIMUM 25 PCT.
-      *
        2300-FTF.
-           COMPUTE FTFA = UPD * 0.05 * MOL
-           IF FTFA > (UPD * 0.25)
-               COMPUTE FTFA = UPD * 0.25
+           COMPUTE WF51 = WUPD * 0.05 * WMOL
+           IF WF51 > (WUPD * 0.25)
+               COMPUTE WF51 = WUPD * 0.25
            END-IF.
-      *
-      *    FTP 1/2 PCT PER MONTH, MAXIMUM 25 PCT.
-      *
        2400-FTP.
-           COMPUTE FTPA = UPD * 0.005 * MOL
-           IF FTPA > (UPD * 0.25)
-               COMPUTE FTPA = UPD * 0.25
+           COMPUTE WF52 = WUPD * 0.005 * WMOL
+           IF WF52 > (WUPD * 0.25)
+               COMPUTE WF52 = WUPD * 0.25
            END-IF.
-      *
-      *    IRC 6651(C)(1).  FTF IS REDUCED BY THE FTP FOR ANY MONTH
-      *    IN WHICH BOTH PENALTIES APPLY.
-      *
        2500-OFFSET.
-           IF FTPA > ZERO
-               COMPUTE FTFA = FTFA - FTPA
-               IF FTFA < ZERO
-                   MOVE ZERO TO FTFA
+           IF WF52 > ZERO
+               COMPUTE WF51 = WF51 - WF52
+               IF WF51 < ZERO
+                   MOVE ZERO TO WF51
                END-IF
            END-IF.
-      *
-      *    IRM 20.1.2.3.7.4 MINIMUM PENALTY.  RETURN MORE THAN 60 DAYS
-      *    LATE AND COMPUTED FTF BELOW THE FLOOR.  THE FLOOR IS THE
-      *    LESSER OF THE TABLE AMOUNT OR 100 PCT OF THE UNPAID TAX.
-      *    THE FLOOR IS NOT REDUCED BY THE FTP.
-      *
        2600-MIN.
-           IF DLD > 60
-               MOVE 485.00 TO MINP
-               IF UPD < MINP
-                   MOVE UPD TO MINP
+           IF WDLD > 60
+               MOVE 485.00 TO WMIN
+               IF WUPD < WMIN
+                   MOVE WUPD TO WMIN
                END-IF
-               IF FTFA < MINP
-                   MOVE MINP TO FTFA
+               IF WF51 < WMIN
+                   MOVE WMIN TO WF51
                    ADD 1 TO Q4
                    MOVE BMF-EIN TO PR-EIN
                    MOVE BMF-MFT TO PR-MFT
                    MOVE BMF-TXPD TO PR-TXPD
                    MOVE "P502" TO PR-COD
                    MOVE "MINIMUM FTF APPLIED" TO PR-TXT
-                   MOVE MOL TO PR-MO
-                   MOVE FTFA TO PR-FTF
-                   MOVE FTPA TO PR-FTP
+                   MOVE WMOL TO PR-MO
+                   MOVE WF51 TO PR-FTF
+                   MOVE WF52 TO PR-FTP
                    WRITE PNRPT-REC FROM PRPT
                END-IF
            END-IF.

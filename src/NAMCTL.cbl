@@ -10,11 +10,11 @@
        01  N1                      PIC S9(4) COMP.
        01  N2                      PIC S9(4) COMP.
        01  N3                      PIC S9(4) COMP.
-       01  WKNM                    PIC X(35).
-       01  WKSQ                    PIC X(35).
-       01  WKCH                    PIC X(01).
-       01  WKWD                    PIC S9(4) COMP.
-       01  WKPR                    PIC X(01).
+       01  WK01                    PIC X(35).
+       01  WK02                    PIC X(35).
+       01  WK03                    PIC X(01).
+       01  WK04                    PIC S9(4) COMP.
+       01  WK05                    PIC X(01).
        LINKAGE SECTION.
        01  NC-PARM.
            05  NCP-NAME            PIC X(35).
@@ -25,51 +25,40 @@
        0000-ENT.
            MOVE "0" TO NCP-RC
            MOVE SPACES TO NCP-NCTL
-           MOVE FUNCTION UPPER-CASE(NCP-NAME) TO WKNM
+           MOVE FUNCTION UPPER-CASE(NCP-NAME) TO WK01
            PERFORM 1000-CNTWD
            PERFORM 2000-DROPTHE
            PERFORM 3000-SQUEEZE
-           IF WKSQ = SPACES
+           IF WK02 = SPACES
                MOVE "8" TO NCP-RC
            ELSE
-               MOVE WKSQ(1:4) TO NCP-NCTL
+               MOVE WK02(1:4) TO NCP-NCTL
            END-IF
            GOBACK.
-      *
-      *    COUNT BLANK-DELIMITED WORDS.
-      *
        1000-CNTWD.
-           MOVE ZERO TO WKWD
-           MOVE " " TO WKPR
+           MOVE ZERO TO WK04
+           MOVE " " TO WK05
            PERFORM VARYING N1 FROM 1 BY 1 UNTIL N1 > 35
-               MOVE WKNM(N1:1) TO WKCH
-               IF WKCH NOT = " " AND WKPR = " "
-                   ADD 1 TO WKWD
+               MOVE WK01(N1:1) TO WK03
+               IF WK03 NOT = " " AND WK05 = " "
+                   ADD 1 TO WK04
                END-IF
-               MOVE WKCH TO WKPR
+               MOVE WK03 TO WK05
            END-PERFORM.
-      *
-      *    IRM 3.13.2.3.1(3)(4). THE WORD "THE" IS BRACKETED OUT WHEN
-      *    MORE THAN ONE WORD FOLLOWS IT.  WHEN ONLY ONE WORD FOLLOWS
-      *    IT THE "THE" IS RETAINED.
-      *
        2000-DROPTHE.
-           IF WKNM(1:4) = "THE " AND WKWD > 2
-               MOVE WKNM(5:31) TO WKNM
+           IF WK01(1:4) = "THE " AND WK04 > 2
+               MOVE WK01(5:31) TO WK01
            END-IF.
-      *
-      *    REMOVE EMBEDDED BLANKS AND PUNCTUATION.
-      *
        3000-SQUEEZE.
-           MOVE SPACES TO WKSQ
+           MOVE SPACES TO WK02
            MOVE ZERO TO N2
            PERFORM VARYING N1 FROM 1 BY 1 UNTIL N1 > 35
-               MOVE WKNM(N1:1) TO WKCH
-               IF (WKCH NOT = " ") AND (WKCH NOT = ",")
-                  AND (WKCH NOT = ".") AND (WKCH NOT = "'")
-                  AND (WKCH NOT = "-")
+               MOVE WK01(N1:1) TO WK03
+               IF (WK03 NOT = " ") AND (WK03 NOT = ",")
+                  AND (WK03 NOT = ".") AND (WK03 NOT = "'")
+                  AND (WK03 NOT = "-")
                    ADD 1 TO N2
-                   MOVE WKCH TO WKSQ(N2:1)
+                   MOVE WK03 TO WK02(N2:1)
                END-IF
            END-PERFORM.
        END PROGRAM NAMCTL.

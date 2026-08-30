@@ -59,11 +59,6 @@
            PERFORM 4000-DOW.
        2000-X.
            EXIT.
-      *
-      *    IRC 7503.  WHEN THE LAST DAY FALLS ON A SATURDAY, SUNDAY
-      *    OR LEGAL HOLIDAY THE DUE DATE MOVES TO THE NEXT SUCCEEDING
-      *    BUSINESS DAY.
-      *
        3000-BUS.
            MOVE ZERO TO WGUARD
            MOVE "Y" TO WSW
@@ -91,9 +86,6 @@
            PERFORM 4000-DOW.
        3000-X.
            EXIT.
-      *
-      *    DAY OF WEEK.  1 = MONDAY THROUGH 7 = SUNDAY.
-      *
        4000-DOW.
            COMPUTE WI = FUNCTION INTEGER-OF-DATE(DVP-GREG)
            COMPUTE WDOW = FUNCTION MOD(WI 7)

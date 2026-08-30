@@ -34,11 +34,11 @@
        01  K1                      PIC 9(6) VALUE ZERO.
        01  K2                      PIC 9(6) VALUE ZERO.
        01  K3                      PIC 9(6) VALUE ZERO.
-       01  BAL                     PIC S9(11)V99 COMP-3.
-       01  LIA                     PIC S9(11)V99 COMP-3.
-       01  CPC                     PIC X(4).
-       01  SEV                     PIC X.
-       01  SUPSW                   PIC X.
+       01  WBAL                     PIC S9(11)V99 COMP-3.
+       01  WLIA                     PIC S9(11)V99 COMP-3.
+       01  WCPC                     PIC X(4).
+       01  WSEV                     PIC X.
+       01  WSUP                   PIC X.
        01  DV-PARM.
            05  DVP-FUNC            PIC X(01).
            05  DVP-GREG            PIC 9(08).
@@ -81,50 +81,43 @@
                    PERFORM 2100-SEL THRU 2100-X
            END-READ.
        2100-SEL.
-           MOVE SPACES TO CPC
-           MOVE " " TO SEV
-           MOVE "N" TO SUPSW
-           COMPUTE LIA = BMF-ASSD + BMF-PFTD + BMF-PFTF + BMF-PFTP
-           COMPUTE BAL = LIA - BMF-DEP - BMF-CRD - BMF-INT
-      *
-      *    SELECTION IS IN PRIORITY ORDER.  THE FIRST CONDITION THAT
-      *    APPLIES OWNS THE MODULE FOR THIS CYCLE.
-      *
+           MOVE SPACES TO WCPC
+           MOVE " " TO WSEV
+           MOVE "N" TO WSUP
+           COMPUTE WLIA = BMF-ASSD + BMF-PFTD + BMF-PFTF + BMF-PFTP
+           COMPUTE WBAL = WLIA - BMF-DEP - BMF-CRD - BMF-INT
            EVALUATE TRUE
                WHEN BMF-FRZ-A = "A"
-                   MOVE "0193" TO CPC
-                   MOVE "3" TO SEV
+                   MOVE "0193" TO WCPC
+                   MOVE "3" TO WSEV
                WHEN BMF-PFTD > ZERO
-                   MOVE "0194" TO CPC
-                   MOVE "2" TO SEV
+                   MOVE "0194" TO WCPC
+                   MOVE "2" TO WSEV
                WHEN BMF-PFTF > ZERO
-                   MOVE "0215" TO CPC
-                   MOVE "2" TO SEV
-               WHEN BAL > 100
-                   MOVE "0161" TO CPC
-                   MOVE "1" TO SEV
-               WHEN BAL < -100
-                   MOVE "0267" TO CPC
-                   MOVE "1" TO SEV
+                   MOVE "0215" TO WCPC
+                   MOVE "2" TO WSEV
+               WHEN WBAL > 100
+                   MOVE "0161" TO WCPC
+                   MOVE "1" TO WSEV
+               WHEN WBAL < -100
+                   MOVE "0267" TO WCPC
+                   MOVE "1" TO WSEV
                WHEN OTHER
                    GO TO 2100-X
            END-EVALUATE
-      *
-      *    A REFUND FREEZE STOPS THE OVERPAYMENT NOTICE ONLY.
-      *
-           IF CPC = "0267" AND BMF-FRZ-R = "R"
-               MOVE "Y" TO SUPSW
+           IF WCPC = "0267" AND BMF-FRZ-R = "R"
+               MOVE "Y" TO WSUP
            END-IF
            IF BMF-FRZ-Z = "Z"
-               MOVE "Y" TO SUPSW
+               MOVE "Y" TO WSUP
            END-IF
            MOVE BMF-EIN TO NR-EIN
            MOVE BMF-MFT TO NR-MFT
            MOVE BMF-TXPD TO NR-TXPD
-           MOVE CPC TO NR-CP
-           MOVE BAL TO NR-AMT
-           MOVE SEV TO NR-SEV
-           IF SUPSW = "Y"
+           MOVE WCPC TO NR-CP
+           MOVE WBAL TO NR-AMT
+           MOVE WSEV TO NR-SEV
+           IF WSUP = "Y"
                ADD 1 TO K3
                MOVE "SUPPRESSED BY FREEZE" TO NR-TXT
                WRITE NGRPT-REC FROM NRPT
@@ -133,7 +126,7 @@
            PERFORM 2200-BLD
            WRITE NOT-REC
            ADD 1 TO K2
-           EVALUATE CPC
+           EVALUATE WCPC
                WHEN "0193"
                    MOVE "DUPLICATE RETURN FILED" TO NR-TXT
                WHEN "0194"
@@ -152,11 +145,11 @@
            MOVE BMF-EIN TO NOT-EIN
            MOVE BMF-MFT TO NOT-MFT
            MOVE BMF-TXPD TO NOT-TXPD
-           MOVE CPC TO NOT-CP
+           MOVE WCPC TO NOT-CP
            MOVE BMF-NCTL TO NOT-NCTL
            MOVE BMF-NAME TO NOT-NAME
-           MOVE BAL TO NOT-AMT
-           MOVE SEV TO NOT-SEV
+           MOVE WBAL TO NOT-AMT
+           MOVE WSEV TO NOT-SEV
            MOVE SPACES TO NOT-FILL
            MOVE 20260815 TO DVP-GREG
            MOVE "B" TO DVP-FUNC

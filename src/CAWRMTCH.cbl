@@ -39,10 +39,10 @@
        01  MKEY                    PIC X(13).
        01  WKEY                    PIC X(13).
        01  HKEY                    PIC X(13).
-       01  LIAB                    PIC S9(11)V99 COMP-3.
-       01  NQTR                    PIC 9(3).
-       01  DIFF                    PIC S9(11)V99 COMP-3.
-       01  TOLR                    PIC S9(11)V99 COMP-3.
+       01  WLIA                    PIC S9(11)V99 COMP-3.
+       01  WNQT                    PIC 9(3).
+       01  WDIF                    PIC S9(11)V99 COMP-3.
+       01  WTOL                    PIC S9(11)V99 COMP-3.
        01  W2REC.
            05  W2-EIN              PIC 9(09).
            05  W2-YR               PIC 9(04).
@@ -84,11 +84,6 @@
            DISPLAY "CAWRMTCH W2 ONLY " C4
            DISPLAY "CAWRMTCH DISCREP " C5
            STOP RUN.
-      *
-      *    THREE WAY MERGE.  THE 941 SIDE IS SUMMARISED BY EIN AND
-      *    YEAR BEFORE COMPARISON, SO THE MODULE SIDE ADVANCES A
-      *    WHOLE CONTROL GROUP AT A TIME.
-      *
        2000-MATCH.
            EVALUATE TRUE
                WHEN MKEY < WKEY
@@ -102,38 +97,34 @@
                    PERFORM 4000-CMP
                    PERFORM 8200-RDW2
            END-EVALUATE.
-      *
-      *    CONTROL BREAK.  ACCUMULATE EVERY MFT 01 MODULE CARRYING
-      *    THE CURRENT EIN AND YEAR.
-      *
        3000-GRP.
            MOVE MKEY TO HKEY
-           MOVE ZERO TO LIAB
-           MOVE ZERO TO NQTR
+           MOVE ZERO TO WLIA
+           MOVE ZERO TO WNQT
            PERFORM UNTIL MEOF = "Y" OR MKEY NOT = HKEY
-               ADD BMF-ASSD TO LIAB
-               ADD 1 TO NQTR
+               ADD BMF-ASSD TO WLIA
+               ADD 1 TO WNQT
                PERFORM 8100-RDMOD
            END-PERFORM
            ADD 1 TO C1.
        4000-CMP.
-           COMPUTE DIFF = HW-WHLD - LIAB
-           COMPUTE TOLR = LIAB * 0.01
-           IF TOLR < 100
-               MOVE 100 TO TOLR
+           COMPUTE WDIF = HW-WHLD - WLIA
+           COMPUTE WTOL = WLIA * 0.01
+           IF WTOL < 100
+               MOVE 100 TO WTOL
            END-IF
            MOVE W2-EIN TO CR-EIN
            MOVE HKEY(10:4) TO CR-YR
            MOVE HW-WHLD TO CR-W2
-           MOVE LIAB TO CR-941
-           MOVE DIFF TO CR-DIFF
-           IF FUNCTION ABS(DIFF) NOT > TOLR
+           MOVE WLIA TO CR-941
+           MOVE WDIF TO CR-DIFF
+           IF FUNCTION ABS(WDIF) NOT > WTOL
                ADD 1 TO C3
                MOVE "C001" TO CR-COD
                MOVE "IN BALANCE" TO CR-TXT
            ELSE
                ADD 1 TO C5
-               IF DIFF > ZERO
+               IF WDIF > ZERO
                    MOVE "C002" TO CR-COD
                    MOVE "W2 EXCEEDS 941 LIABILITY" TO CR-TXT
                ELSE
@@ -149,9 +140,9 @@
            MOVE "C004" TO CR-COD
            MOVE "NO W2 DATA FROM SSA" TO CR-TXT
            MOVE ZERO TO CR-W2
-           MOVE LIAB TO CR-941
-           COMPUTE DIFF = ZERO - LIAB
-           MOVE DIFF TO CR-DIFF
+           MOVE WLIA TO CR-941
+           COMPUTE WDIF = ZERO - WLIA
+           MOVE WDIF TO CR-DIFF
            WRITE CWRPT-REC FROM CRPT.
        4200-W2ONLY.
            ADD 1 TO C4
@@ -163,10 +154,6 @@
            MOVE ZERO TO CR-941
            MOVE HW-WHLD TO CR-DIFF
            WRITE CWRPT-REC FROM CRPT.
-      *
-      *    ONLY MFT 01 PARTICIPATES IN CAWR.  OTHER MFTS ARE SKIPPED
-      *    ON THE READ SO THEY NEVER REACH THE MERGE.
-      *
        8100-RDMOD.
            MOVE "N" TO FS1
            PERFORM UNTIL MEOF = "Y"

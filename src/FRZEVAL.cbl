@@ -34,10 +34,10 @@
        01  V2                      PIC 9(6) VALUE ZERO.
        01  V3                      PIC 9(6) VALUE ZERO.
        01  V4                      PIC 9(6) VALUE ZERO.
-       01  BAL                     PIC S9(11)V99 COMP-3.
-       01  RFSW                    PIC X.
-       01  OFSW                    PIC X.
-       01  FZCT                    PIC 9(2).
+       01  WBAL                     PIC S9(11)V99 COMP-3.
+       01  WRFS                    PIC X.
+       01  WOFS                    PIC X.
+       01  WFZC                    PIC 9(2).
        01  ZRPT.
            05  FILLER              PIC X(07) VALUE "FRZEVAL".
            05  FILLER              PIC X(02) VALUE SPACES.
@@ -76,71 +76,56 @@
                    ADD 1 TO V2
            END-READ.
        2100-FRZ.
-           MOVE "Y" TO RFSW
-           MOVE "Y" TO OFSW
-           MOVE ZERO TO FZCT
-           COMPUTE BAL = BMF-ASSD + BMF-PFTD + BMF-PFTF + BMF-PFTP
+           MOVE "Y" TO WRFS
+           MOVE "Y" TO WOFS
+           MOVE ZERO TO WFZC
+           COMPUTE WBAL = BMF-ASSD + BMF-PFTD + BMF-PFTF + BMF-PFTP
                - BMF-DEP - BMF-CRD
-      *
-      *    -A  DUPLICATE FILING.  REFUND HELD PENDING RESOLUTION.
-      *
            IF BMF-FRZ-A = "A"
-               MOVE "N" TO RFSW
-               ADD 1 TO FZCT
+               MOVE "N" TO WRFS
+               ADD 1 TO WFZC
            END-IF
-      *
-      *    -L  EXAMINATION OPEN.  REFUND AND OFFSET BOTH HELD.
-      *
            IF BMF-FRZ-L = "L"
-               MOVE "N" TO RFSW
-               MOVE "N" TO OFSW
-               ADD 1 TO FZCT
+               MOVE "N" TO WRFS
+               MOVE "N" TO WOFS
+               ADD 1 TO WFZC
            END-IF
-      *
-      *    -V  BANKRUPTCY.  AUTOMATIC STAY BARS OFFSET.
-      *
            IF BMF-FRZ-V = "V"
-               MOVE "N" TO OFSW
-               ADD 1 TO FZCT
+               MOVE "N" TO WOFS
+               ADD 1 TO WFZC
            END-IF
-      *
-      *    -S  DISASTER.  COMPLIANCE ACTIVITY SUSPENDED.
-      *
            IF BMF-FRZ-S = "S"
-               MOVE "N" TO RFSW
-               ADD 1 TO FZCT
+               MOVE "N" TO WRFS
+               ADD 1 TO WFZC
            END-IF
-      *
-      *    -Z  CRIMINAL INVESTIGATION CONTROL.
-      *
            IF BMF-FRZ-Z = "Z"
-               MOVE "N" TO RFSW
-               MOVE "N" TO OFSW
-               ADD 1 TO FZCT
+               MOVE "N" TO WRFS
+               MOVE "N" TO WOFS
+               ADD 1 TO WFZC
            END-IF
-           IF RFSW = "N"
+           IF WRFS = "N"
                ADD 1 TO V3
                MOVE "R" TO BMF-FRZ-R
            END-IF
-           IF OFSW = "N"
+           IF WOFS = "N"
                ADD 1 TO V4
                MOVE "O" TO BMF-FRZ-O
            END-IF
-           IF FZCT > ZERO
+           IF WFZC > ZERO
                MOVE BMF-EIN TO ZR-EIN
                MOVE BMF-MFT TO ZR-MFT
                MOVE BMF-TXPD TO ZR-TXPD
                MOVE "Z701" TO ZR-COD
-               IF RFSW = "N" AND OFSW = "N"
+               IF WRFS = "N" AND WOFS = "N"
                    MOVE "REFUND AND OFFSET SUPPRESSED" TO ZR-TXT
                ELSE
-                   IF RFSW = "N"
+                   IF WRFS = "N"
                        MOVE "REFUND SUPPRESSED" TO ZR-TXT
                    ELSE
                        MOVE "OFFSET SUPPRESSED" TO ZR-TXT
                    END-IF
                END-IF
                MOVE BMF-FRZ TO ZR-FRZ
-               MOVE BAL TO ZR-BAL
+               MOVE WBAL TO ZR-BAL
                WRITE FZRPT-REC FROM ZRPT
            END-IF.

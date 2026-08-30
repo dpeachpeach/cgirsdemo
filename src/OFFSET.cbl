@@ -4,6 +4,7 @@
       *    REFUND OFFSET - IRM 21.4.6                                 *
       *    STEP 090.  OUTSTANDING LIABILITIES ARE SATISFIED IN        *
       *    SOURCE ORDER BMF, IMF, THEN DMF (TOP) LAST.                *
+      *    DMF ADDED 01/86 UNDER THE DEFICIT REDUCTION ACT OF 1984.   *
       *****************************************************************
        ENVIRONMENT DIVISION.
        INPUT-OUTPUT SECTION.
@@ -41,13 +42,13 @@
        01  G2                      PIC 9(6) VALUE ZERO.
        01  G3                      PIC 9(6) VALUE ZERO.
        01  G4                      PIC 9(6) VALUE ZERO.
-       01  NDBT                    PIC S9(4) COMP VALUE ZERO.
+       01  WNDB                    PIC S9(4) COMP VALUE ZERO.
        01  DX                      PIC S9(4) COMP.
        01  PX                      PIC S9(4) COMP.
-       01  AVAIL                   PIC S9(11)V99 COMP-3.
-       01  LIA                     PIC S9(11)V99 COMP-3.
-       01  APPL                    PIC S9(11)V99 COMP-3.
-       01  PRISRC                  PIC X(2).
+       01  WAVL                   PIC S9(11)V99 COMP-3.
+       01  WLIA                     PIC S9(11)V99 COMP-3.
+       01  WAPL                    PIC S9(11)V99 COMP-3.
+       01  WSRC                  PIC X(2).
        01  DBTREC.
            05  DB-EIN              PIC 9(09).
            05  DB-SRC              PIC X(02).
@@ -92,9 +93,6 @@
            DISPLAY "OFFSET  APPLIED " G3
            DISPLAY "OFFSET  SUPPRESS" G4
            STOP RUN.
-      *
-      *    LOAD THE OUTSTANDING LIABILITY FILE INTO CORE.
-      *
        1000-LOAD.
            OPEN INPUT DBTIN
            PERFORM UNTIL DEOF = "Y"
@@ -102,18 +100,18 @@
                    AT END
                        MOVE "Y" TO DEOF
                    NOT AT END
-                       IF NDBT < 500
-                           ADD 1 TO NDBT
-                           MOVE DB-EIN  TO DT-EIN(NDBT)
-                           MOVE DB-SRC  TO DT-SRC(NDBT)
-                           MOVE DB-MFT  TO DT-MFT(NDBT)
-                           MOVE DB-TXPD TO DT-TXPD(NDBT)
-                           MOVE DB-AMT  TO DT-BAL(NDBT)
+                       IF WNDB < 500
+                           ADD 1 TO WNDB
+                           MOVE DB-EIN  TO DT-EIN(WNDB)
+                           MOVE DB-SRC  TO DT-SRC(WNDB)
+                           MOVE DB-MFT  TO DT-MFT(WNDB)
+                           MOVE DB-TXPD TO DT-TXPD(WNDB)
+                           MOVE DB-AMT  TO DT-BAL(WNDB)
                        END-IF
                END-READ
            END-PERFORM
            CLOSE DBTIN
-           DISPLAY "OFFSET  DEBTS   " NDBT.
+           DISPLAY "OFFSET  DEBTS   " WNDB.
        2000-PROC.
            READ MODIN
                AT END
@@ -125,14 +123,11 @@
                    ADD 1 TO G2
            END-READ.
        2100-OFF.
-           COMPUTE LIA = BMF-ASSD + BMF-PFTD + BMF-PFTF + BMF-PFTP
-           COMPUTE AVAIL = BMF-DEP + BMF-CRD + BMF-INT - LIA
-           IF AVAIL NOT > ZERO
+           COMPUTE WLIA = BMF-ASSD + BMF-PFTD + BMF-PFTF + BMF-PFTP
+           COMPUTE WAVL = BMF-DEP + BMF-CRD + BMF-INT - WLIA
+           IF WAVL NOT > ZERO
                GO TO 2100-X
            END-IF
-      *
-      *    A REFUND OR OFFSET FREEZE STOPS THE MODULE HERE.
-      *
            IF BMF-FRZ-O = "O"
                ADD 1 TO G4
                MOVE BMF-EIN TO GR-EIN
@@ -142,43 +137,43 @@
                MOVE "OFFSET FROZEN" TO GR-TXT
                MOVE SPACES TO GR-SRC
                MOVE ZERO TO GR-AMT
-               MOVE AVAIL TO GR-REM
+               MOVE WAVL TO GR-REM
                WRITE OFRPT-REC FROM GRPT
                GO TO 2100-X
            END-IF
            PERFORM VARYING PX FROM 1 BY 1 UNTIL PX > 3
                EVALUATE PX
                    WHEN 1
-                       MOVE "BM" TO PRISRC
+                       MOVE "BM" TO WSRC
                    WHEN 2
-                       MOVE "IM" TO PRISRC
+                       MOVE "IM" TO WSRC
                    WHEN OTHER
-                       MOVE "DM" TO PRISRC
+                       MOVE "DM" TO WSRC
                END-EVALUATE
                PERFORM 2200-SCAN
            END-PERFORM.
        2100-X.
            EXIT.
        2200-SCAN.
-           PERFORM VARYING DX FROM 1 BY 1 UNTIL DX > NDBT
-               IF DT-EIN(DX) = BMF-EIN AND DT-SRC(DX) = PRISRC
-                  AND DT-BAL(DX) > ZERO AND AVAIL > ZERO
-                   IF DT-BAL(DX) < AVAIL
-                       MOVE DT-BAL(DX) TO APPL
+           PERFORM VARYING DX FROM 1 BY 1 UNTIL DX > WNDB
+               IF DT-EIN(DX) = BMF-EIN AND DT-SRC(DX) = WSRC
+                  AND DT-BAL(DX) > ZERO AND WAVL > ZERO
+                   IF DT-BAL(DX) < WAVL
+                       MOVE DT-BAL(DX) TO WAPL
                    ELSE
-                       MOVE AVAIL TO APPL
+                       MOVE WAVL TO WAPL
                    END-IF
-                   SUBTRACT APPL FROM DT-BAL(DX)
-                   SUBTRACT APPL FROM AVAIL
+                   SUBTRACT WAPL FROM DT-BAL(DX)
+                   SUBTRACT WAPL FROM WAVL
                    ADD 1 TO G3
                    MOVE BMF-EIN TO GR-EIN
                    MOVE BMF-MFT TO GR-MFT
                    MOVE BMF-TXPD TO GR-TXPD
                    MOVE "G902" TO GR-COD
                    MOVE "OFFSET APPLIED" TO GR-TXT
-                   MOVE PRISRC TO GR-SRC
-                   MOVE APPL TO GR-AMT
-                   MOVE AVAIL TO GR-REM
+                   MOVE WSRC TO GR-SRC
+                   MOVE WAPL TO GR-AMT
+                   MOVE WAVL TO GR-REM
                    WRITE OFRPT-REC FROM GRPT
                END-IF
            END-PERFORM.

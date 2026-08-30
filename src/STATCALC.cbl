@@ -4,6 +4,7 @@
       *    STATUTE DATE COMPUTATION - ASED / RSED / CSED              *
       *    STEP 030.  CALLS DATCNV FOR JULIAN CONVERSION.             *
       *    W8 POS 1-2 CARRIES THE STATUTE CONDITION CODE.             *
+      *    CODES 05/07/12 ONLY. 09 AND 11 WITHDRAWN 06/88.            *
       *****************************************************************
        ENVIRONMENT DIVISION.
        INPUT-OUTPUT SECTION.
@@ -39,11 +40,11 @@
        01  SDY                      PIC 9(2).
        01  SCC                     PIC 9(2).
        01  SDT                     PIC 9(8).
-       01  WRDD                    PIC 9(7).
-       01  WASED                   PIC 9(7).
-       01  WRSED                   PIC 9(7).
-       01  WCSED                   PIC 9(7).
-       01  WYR                     PIC 9(4).
+       01  W7RD                    PIC 9(7).
+       01  W7AS                   PIC 9(7).
+       01  W7RS                   PIC 9(7).
+       01  W7CS                   PIC 9(7).
+       01  W7YR                     PIC 9(4).
        01  DC-PARM.
            05  DCP-FUNC            PIC X(01).
            05  DCP-GREG            PIC 9(08).
@@ -93,15 +94,9 @@
            PERFORM 2300-ASED
            PERFORM 2400-RSED
            PERFORM 2500-CSED
-           MOVE WASED TO BMF-ASED
-           MOVE WRSED TO BMF-RSED
-           MOVE WCSED TO BMF-CSED.
-      *
-      *    RETURN DUE DATE FROM MFT AND TAX PERIOD.
-      *      MFT 01  941   LAST DAY OF MONTH FOLLOWING QUARTER
-      *      MFT 02  1120  15TH DAY OF 4TH MONTH FOLLOWING FYE
-      *      MFT 10  940   JANUARY 31 FOLLOWING
-      *
+           MOVE W7AS TO BMF-ASED
+           MOVE W7RS TO BMF-RSED
+           MOVE W7CS TO BMF-CSED.
        2200-RDD.
            MOVE BMF-TXPD(1:4) TO SY
            MOVE BMF-TXPD(5:2) TO SM
@@ -129,72 +124,54 @@
            MOVE "J" TO DCP-FUNC
            MOVE SDT TO DCP-GREG
            CALL "DATCNV" USING DC-PARM
-           MOVE DCP-JUL TO WRDD.
-      *
-      *    IRM 25.6.1.9.2.  THREE YEARS FROM THE DATE THE RETURN WAS
-      *    FILED, IRC 6501(A).
-      *
+           MOVE DCP-JUL TO W7RD.
        2300-ASED.
-           COMPUTE WYR = SY + 3
-           COMPUTE WASED = WYR * 1000 + FUNCTION MOD(WRDD 1000)
+           COMPUTE W7YR = SY + 3
+           COMPUTE W7AS = W7YR * 1000 + FUNCTION MOD(W7RD 1000)
            PERFORM 2350-SPCL.
-      *
-      *    SPECIAL ASSESSMENT PERIODS.  STATUTE CONDITION CODE IN W8.
-      *      05  25 PERCENT OMISSION   IRM 25.6.1.9.5.3  SIX YEARS
-      *      07  FRAUDULENT RETURN     IRM 25.6.1.9.5.2  NO LIMIT
-      *      12  FORM 872 CONSENT      IRM 25.6.1.9.5.1  TO AGREED DT
-      *
        2350-SPCL.
            EVALUATE SCC
                WHEN 05
-                   COMPUTE WYR = SY + 6
-                   COMPUTE WASED = WYR * 1000
-                       + FUNCTION MOD(WRDD 1000)
+                   COMPUTE W7YR = SY + 6
+                   COMPUTE W7AS = W7YR * 1000
+                       + FUNCTION MOD(W7RD 1000)
                    ADD 1 TO R6
                    MOVE "S301" TO SR-COD
                    MOVE "25 PCT OMISSION - 6 YEAR ASED" TO SR-TXT
                    PERFORM 8000-RPT
                WHEN 07
-                   MOVE 9999365 TO WASED
+                   MOVE 9999365 TO W7AS
                    ADD 1 TO R7
                    MOVE "S302" TO SR-COD
                    MOVE "FRAUD - ASED NOT LIMITED" TO SR-TXT
                    PERFORM 8000-RPT
                WHEN 12
-                   COMPUTE WYR = SY + 3
+                   COMPUTE W7YR = SY + 3
                    MOVE BMF-W8(4:5) TO DCP-RSV(1:5)
-                   COMPUTE WASED = WYR * 1000 + 105
+                   COMPUTE W7AS = W7YR * 1000 + 105
                    ADD 1 TO R7
                    MOVE "S303" TO SR-COD
                    MOVE "FORM 872 CONSENT - ASED EXTENDED" TO SR-TXT
                    PERFORM 8000-RPT
            END-EVALUATE.
-      *
-      *    IRM 25.6.1.10.  LATER OF THREE YEARS FROM FILING OR TWO
-      *    YEARS FROM PAYMENT.
-      *
        2400-RSED.
-           COMPUTE WYR = SY + 3
-           COMPUTE WRSED = WYR * 1000 + FUNCTION MOD(WRDD 1000)
+           COMPUTE W7YR = SY + 3
+           COMPUTE W7RS = W7YR * 1000 + FUNCTION MOD(W7RD 1000)
            IF BMF-DEP > ZERO
-               COMPUTE WYR = SY + 2
-               IF (WYR * 1000) > WRSED
-                   COMPUTE WRSED = WYR * 1000
-                       + FUNCTION MOD(WRDD 1000)
+               COMPUTE W7YR = SY + 2
+               IF (W7YR * 1000) > W7RS
+                   COMPUTE W7RS = W7YR * 1000
+                       + FUNCTION MOD(W7RD 1000)
                END-IF
            END-IF.
-      *
-      *    IRM 25.6.1.12.  TEN YEARS FROM ASSESSMENT.  A -V OR -Z
-      *    FREEZE SUSPENDS THE PERIOD AND ADDS SIX MONTHS.
-      *
        2500-CSED.
-           COMPUTE WYR = SY + 10
-           COMPUTE WCSED = WYR * 1000 + FUNCTION MOD(WRDD 1000)
+           COMPUTE W7YR = SY + 10
+           COMPUTE W7CS = W7YR * 1000 + FUNCTION MOD(W7RD 1000)
            IF BMF-FRZ-V = "V" OR BMF-FRZ-Z = "Z"
-               ADD 183 TO WCSED
-               IF FUNCTION MOD(WCSED 1000) > 365
-                   ADD 1000 TO WCSED
-                   SUBTRACT 365 FROM WCSED
+               ADD 183 TO W7CS
+               IF FUNCTION MOD(W7CS 1000) > 365
+                   ADD 1000 TO W7CS
+                   SUBTRACT 365 FROM W7CS
                END-IF
                ADD 1 TO R7
                MOVE "S304" TO SR-COD
@@ -205,6 +182,6 @@
            MOVE BMF-EIN TO SR-EIN
            MOVE BMF-MFT TO SR-MFT
            MOVE BMF-TXPD TO SR-TXPD
-           MOVE WASED TO SR-ASED
-           MOVE WCSED TO SR-CSED
+           MOVE W7AS TO SR-ASED
+           MOVE W7CS TO SR-CSED
            WRITE STRPT-REC FROM SRPT.

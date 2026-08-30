@@ -37,9 +37,9 @@
        01  R3                      PIC 9(6) VALUE ZERO.
        01  R4                      PIC 9(6) VALUE ZERO.
        01  IX                      PIC S9(4) COMP.
-       01  PFX                     PIC 9(2).
-       01  PFXSW                   PIC X.
-       01  NCSW                    PIC X.
+       01  WPFX                     PIC 9(2).
+       01  WPSW                   PIC X.
+       01  WNSW                    PIC X.
        01  E01                     PIC X(01).
       *
       *    CAMPUS ASSIGNED BMF PREFIXES.  SEE IRM 3.13.2 EXHIBIT.
@@ -95,24 +95,20 @@
                    ADD 1 TO R2
            END-READ.
        2100-EDIT.
-           MOVE "N" TO PFXSW
-           MOVE "N" TO NCSW
+           MOVE "N" TO WPSW
+           MOVE "N" TO WNSW
            PERFORM 2200-PFX
            PERFORM 2300-NCTL THRU 2300-X
            PERFORM 2400-FRC.
-      *
-      *    PREFIX EDIT.  UNKNOWN PREFIX IS REPORTED BUT NOT FATAL -
-      *    THE ACCOUNT STILL POSTS.
-      *
        2200-PFX.
-           MOVE ENT-EIN(1:2) TO PFX
+           MOVE ENT-EIN(1:2) TO WPFX
            PERFORM VARYING IX FROM 1 BY 1 UNTIL IX > 30
-               IF PFXENT(IX) = PFX
-                   MOVE "Y" TO PFXSW
+               IF PFXENT(IX) = WPFX
+                   MOVE "Y" TO WPSW
                    MOVE 31 TO IX
                END-IF
            END-PERFORM
-           IF PFXSW = "N"
+           IF WPSW = "N"
                MOVE ENT-EIN TO EL-EIN
                MOVE "E101" TO EL-COD
                MOVE "PREFIX NOT IN CAMPUS TABLE" TO EL-TXT
@@ -121,10 +117,6 @@
                WRITE ERRPT-REC FROM ERRLIN
                ADD 1 TO R3
            END-IF.
-      *
-      *    NAME CONTROL.  DERIVED VALUE OVERRIDES WHAT WAS CARRIED ON
-      *    THE ENTITY RECORD.
-      *
        2300-NCTL.
            MOVE ENT-NAME TO NCP-NAME
            MOVE SPACES TO NCP-NCTL
@@ -148,13 +140,10 @@
                WRITE ERRPT-REC FROM ERRLIN
                ADD 1 TO R4
                MOVE NCP-NCTL TO ENT-NCTL
-               MOVE "Y" TO NCSW
+               MOVE "Y" TO WNSW
            END-IF.
        2300-X.
            EXIT.
-      *
-      *    FILING REQUIREMENT CONSISTENCY.
-      *
        2400-FRC.
            IF ENT-EC = "F" AND ENT-I-940 = "1"
                MOVE ENT-EIN TO EL-EIN

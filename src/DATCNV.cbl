@@ -83,9 +83,6 @@
            COMPUTE DCP-GREG = KY * 10000 + KM * 100 + KA.
        2000-X.
            EXIT.
-      *
-      *    GREGORIAN LEAP RULE. KL = 1 WHEN FEBRUARY HAS 29 DAYS.
-      *
        3000-LEAP.
            MOVE ZERO TO KL
            COMPUTE KR = FUNCTION MOD(KY 4)
