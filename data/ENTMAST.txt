@@ -1,0 +1,52 @@
+100001322ORIOLE LARKSPUR INC                ORIO    8007 LARKSPUR ST                   ANDOVER               MA00000550112A1   000000000              
+120001063OSPREY INDIGO PC                   OSPR    5088 INDIGO ST                     HOLTSVILLE            NY00000050106 1   000000000              
+120001070SISKIN JASMINE PC                  SISK    2033 JASMINE ST                    HOLTSVILLE            NY00000050112A 1  000000000              
+120001077TOWHEE ZINNIA LLC                  TOWH    4657 ZINNIA ST                     MEMPHIS               TN00003750106   1 000000000              
+120001154WIGEON ASTER LLC                   WIGE    5432 ASTER ST                      MEMPHIS               TN00003750112F1   000000000              
+120001196WARBLER JASMINE CO                 WARB    311 JASMINE ST                     HOLTSVILLE            NY00000050112F  1 000000000              
+120001287THE VEERY FESCUE CO                VEER    1071 FESCUE ST                     FRESNO                CA00009388812 1   000000000              
+200001007SISKIN BRIAR CORP                  SISK    2934 BRIAR ST                      OGDEN                 UT00008420112 1   000000000              
+200001168THE NUTHATCH JASMINE CO            NUTH    1678 JASMINE ST                    OGDEN                 UT00008420109A1   000000000              
+200001252HARRIER INDIGO INC                 HARR    3569 INDIGO ST                     OGLETHORPE            GA00003106812F  1 000000000              
+260001112THE NUTHATCH                       THEN    8401 KUDZU ST                      FRESNO                CA00009388812F  1 000000000              
+260001210CURLEW DOGWOOD PA                  CURL    9753 DOGWOOD ST                    CINCINNATI            OH00004599912A1   000000000              
+260001315AVOCET FESCUE HOLDINGS INC         AVOC    225 FESCUE ST                      HOLTSVILLE            NY00000050106A 1  000000000              
+270001042KESTREL HAWTHORN ASSOCIATES INC    KEST    8429 HAWTHORN ST                   OGLETHORPE            GA00003106806A1   000000000              
+270001084TOWHEE BRIAR MFG CO                TOWH    9731 BRIAR ST                      OGLETHORPE            GA00003106812A1   000000000              
+270001364KILLDEER JASMINE MFG CO            KILL    3104 JASMINE ST                    KANSAS CITY           MO00006499912A1   000000000              
+460001014NUTHATCH MALLOW MFG CO             NUTH    6397 MALLOW ST                     OGDEN                 UT00008420112F1   000000000              
+460001105CARDINAL CLOVER PC                 CARD    883 CLOVER ST                      AUSTIN                TX00007330106   1 000000000              
+460001217GADWALL FESCUE PA                  GADW    8612 FESCUE ST                     OGLETHORPE            GA00003106806 1   000000000              
+470001126HARRIER ELDER PA                   HARR    5050 ELDER ST                      AUSTIN                TX00007330112A 1  000000000              
+470001301AVOCET KUDZU MFG CO                AVOC    4087 KUDZU ST                      OGLETHORPE            GA00003106812F1   000000000              
+810001119THE TOWHEE                         THET    5499 FESCUE ST                     ANDOVER               MA00000550106F  1 000000000              
+810001133WIGEON DOGWOOD CORP                WIGE    8270 DOGWOOD ST                    OGDEN                 UT00008420106 1   000000000              
+830001091THE TOWHEE                         THET    6686 INDIGO ST                     ANDOVER               MA00000550109   1 000000000              
+830001294OSPREY BRIAR CORP                  OSPR    1848 BRIAR ST                      OGDEN                 UT00008420109 1   000000000              
+840001259GADWALL JASMINE ASSOCIATES INC     GADW    5064 JASMINE ST                    HOLTSVILLE            NY00000050112F 1  000000000              
+840001308GADWALL BRIAR CORP                 GADW    7418 BRIAR ST                      HOLTSVILLE            NY00000050112   1 000000000              
+850001182THE LAPWING LARKSPUR CO            LAPW    6133 LARKSPUR ST                   KANSAS CITY           MO00006499912F1   000000000              
+850001189NUTHATCH GORSE CORP                NUTH    674 GORSE ST                       KANSAS CITY           MO00006499912   1 000000000              
+850001266QUAIL BRIAR LLC                    QUAI    4130 BRIAR ST                      CINCINNATI            OH00004599906A1   000000000              
+850001343WARBLER DOGWOOD CO                 WARB    6604 DOGWOOD ST                    OGDEN                 UT00008420112A1   000000000              
+860001161THE NUTHATCH BRIAR CO              NUTH    7566 BRIAR ST                      OGLETHORPE            GA00003106809  1  000000000              
+860001280GADWALL CLOVER PC                  GADW    6032 CLOVER ST                     OGDEN                 UT00008420112A1   000000000              
+870001147KESTREL ASTER LLC                  KEST    6520 ASTER ST                      OGLETHORPE            GA00003106809 1   000000000              
+870001203TANAGER KUDZU PA                   TANA    9448 KUDZU ST                      CINCINNATI            OH00004599912A  1 000000000              
+870001336CARDINAL LARKSPUR MFG CO           CARD    698 LARKSPUR ST                    KANSAS CITY           MO00006499912F1   000000000              
+880001035KESTREL FESCUE CO                  KEST    8761 FESCUE ST                     FRESNO                CA00009388806A1   000000000              
+880001175THE OSPREY BRIAR CO                OSPR    6570 BRIAR ST                      HOLTSVILLE            NY00000050109F1   000000000              
+880001350THE REDPOLL FESCUE CO              REDP    9106 FESCUE ST                     KANSAS CITY           MO00006499912 1   000000000              
+910001056OSPREY ASTER PC                    OSPR    9797 ASTER ST                      KANSAS CITY           MO00006499912 1   000000000              
+910001098CURLEW BRIAR CORP                  CURL    6939 BRIAR ST                      HOLTSVILLE            NY00000050112  1  000000000              
+920001028THE PLOVER FESCUE CO               PLOV    6582 FESCUE ST                     OGLETHORPE            GA00003106812A1   000000000              
+920001245THE WARBLER CLOVER CO              WARB    4806 CLOVER ST                     CINCINNATI            OH00004599906A1   000000000              
+930001049THE AVOCET                         THEA    4194 HAWTHORN ST                   KANSAS CITY           MO00006499912 1   000000000              
+930001224WARBLER FESCUE MFG CO              WARB    2079 FESCUE ST                     OGDEN                 UT00008420106 1   000000000              
+930001357TOWHEE ZINNIA INC                  TOWH    1733 ZINNIA ST                     OGDEN                 UT00008420112 1   000000000              
+940001021TOWHEE ZINNIA PC                   TOWH    457 ZINNIA ST                      KANSAS CITY           MO00006499912  1  000000000              
+940001238THE CURLEW KUDZU CO                CURL    6558 KUDZU ST                      HOLTSVILLE            NY00000050112A1   000000000              
+940001329GADWALL MALLOW MFG CO              GADW    6460 MALLOW ST                     AUSTIN                TX00007330112A1   000000000              
+950001231REDPOLL FESCUE CO                  REDP    3910 FESCUE ST                     CINCINNATI            OH00004599909 1   000000000              
+980001140JUNCO ZINNIA CORP                  JUNC    1694 ZINNIA ST                     OGLETHORPE            GA00003106809A1   000000000              
+980001273WARBLER ZINNIA CO                  WARB    3518 ZINNIA ST                     OGLETHORPE            GA00003106806A1   000000000              

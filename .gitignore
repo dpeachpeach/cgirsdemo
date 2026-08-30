@@ -3,3 +3,4 @@ ANSWERS.md
 *.o
 *.so
 data/out/
+data/*.dat
