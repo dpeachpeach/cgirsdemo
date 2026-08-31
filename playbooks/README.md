@@ -1,7 +1,8 @@
 # Playbooks
 
-Three reusable procedures for working this corpus. Each takes one input, writes a
-markdown report under `reports/`, and prints a condensed table to the transcript.
+Three reusable procedures for working this corpus. Each takes one input and prints
+its findings to the session transcript, keeping a full markdown report on disk under
+`reports/` — a working artifact, gitignored and never committed.
 
 | Playbook | Input | Question it answers |
 |:---|:---|:---|

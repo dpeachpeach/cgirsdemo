@@ -17,12 +17,12 @@ Given one field from `copybooks/` in `github.com/dpeachpeach/cgirsdemo`, find ev
 4. For each reference determine two things separately: **which byte positions** are read or written, and **what the program treats those bytes as meaning** — inferred from the surrounding logic (comparisons, tables, arithmetic, branch outcomes), never from the field name or a comment.
 5. Compare across programs. Flag any field where two programs assign different meanings to overlapping bytes, or where one program writes bytes another program reads under a different interpretation.
 6. Trace the consequence: for each write→read pair, state plainly what changing the writing program does to the reading program, and which output/report the effect surfaces in (see the dataset chain in `docs/PIPELINE.md`).
-7. Write the report to `reports/LINEAGE-<FIELD>-<YYYY-MM-DD>.md` in the format below and print the headline conflict plus the condensed table to the transcript.
+7. Write the report to `reports/LINEAGE-<FIELD>-<YYYY-MM-DD>.md` (the directory is gitignored — a working artifact, never committed) and print the headline conflict plus the condensed table to the transcript. The transcript is the deliverable; the file is the backup.
 8. Validate: re-open every cited `file:line`, confirm the byte positions claimed match the code, and confirm the declared offset+length arithmetic against the copybook and the `RECFM`/`LRECL` in the copybook header and `catlg/LISTCAT.txt`.
 
 ## Specifications
 
-- Deliverable: `reports/LINEAGE-<FIELD>-<YYYY-MM-DD>.md`, plus the same table in the transcript.
+- Deliverable: the headline conflict and table printed in the session transcript, backed by `reports/LINEAGE-<FIELD>-<YYYY-MM-DD>.md` on disk (gitignored, not committed).
 - Report format:
 
 ```markdown
@@ -59,4 +59,4 @@ meaning, so the programs below can and do disagree about these bytes.>
 - Do **not** report two programs merely referencing the same field as a conflict; a conflict requires incompatible interpretations of overlapping bytes.
 - Do **not** invent a citation. If no program writes the field, say so explicitly.
 - Do **not** look for or use an answer key; none exists in the repository.
-- Do **not** modify the corpus apart from the file written under `reports/`.
+- Do **not** modify the corpus, and do **not** commit anything — including the report, which stays gitignored under `reports/`.

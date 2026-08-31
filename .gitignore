@@ -4,3 +4,4 @@ ANSWERS.md
 *.so
 data/out/
 data/*.dat
+reports/

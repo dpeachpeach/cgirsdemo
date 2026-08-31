@@ -17,12 +17,12 @@ Given one batch program in `github.com/dpeachpeach/cgirsdemo`, produce the delta
 4. **Step 2 — extract rules from the IRM.** Read the mapped section under `irm/` and extract rules in the same normalized form, keyed by subsection number. Note every `> REDACTED IN SOURCE` span and which subsections it covers.
 5. **Step 3 — diff.** Place every rule from either side in exactly one bucket: `MATCH` (both, same behavior), `DRIFT` (both, behavior differs), `CODE-ONLY` (in code, no IRM subsection), `IRM-ONLY` (in IRM, not implemented), `UNVERIFIABLE` (rule falls inside a redacted span).
 6. **Step 4 — check the adjacent notations.** For this program's job read `jcl/<MEMBER>.jcl` (DD names, `DISP`, `COND`, GDG generations), the `ctl/*.ctl` cards for any presort feeding it, `sched/BMFNITE.ca7` (run order, requirements), `docs/PIPELINE.md` (dataset flow) and `catlg/LISTCAT.txt` (dataset inventory, RECFM/LRECL). Compare sort key fields, record lengths, dataset names and step ordering hardest. Report each disagreement as `CROSS-NOTATION`.
-7. Write the report to `reports/RECON-<PROGRAM>-<YYYY-MM-DD>.md` in the output format below, and print the headline finding plus the condensed table to the session transcript.
+7. Write the report to `reports/RECON-<PROGRAM>-<YYYY-MM-DD>.md` (the directory is gitignored — the report is a working artifact, never committed) and print the headline finding plus the condensed table to the session transcript. The transcript is the deliverable; the file is the backup.
 8. Validate before delivering: open each cited `file:line` and confirm it says what the row claims; confirm no row cites a subsection inside a redacted span as `DRIFT`; confirm every rule is in exactly one bucket and the summary counts add up.
 
 ## Specifications
 
-- Deliverable: `reports/RECON-<PROGRAM>-<YYYY-MM-DD>.md`, plus the same table printed in the transcript.
+- Deliverable: the headline finding and table printed in the session transcript, backed by `reports/RECON-<PROGRAM>-<YYYY-MM-DD>.md` on disk (gitignored, not committed).
 - Report format:
 
 ```markdown
@@ -63,4 +63,4 @@ Given one batch program in `github.com/dpeachpeach/cgirsdemo`, produce the delta
 - Do **not** invent a citation. If a rule cannot be located in the code or the IRM, say so explicitly.
 - Do **not** treat a comment as evidence of behavior.
 - Do **not** look for or use an answer key; none exists in the repository.
-- Do **not** modify the corpus. This playbook is read-only apart from the file it writes under `reports/`.
+- Do **not** modify the corpus, and do **not** commit anything — including the report. This playbook is read-only apart from the gitignored file it writes under `reports/`.
