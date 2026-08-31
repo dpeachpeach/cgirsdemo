@@ -6,13 +6,14 @@ Port one COBOL program in `github.com/dpeachpeach/cgirsdemo` to Python and produ
 
 ## What's Needed From User
 
-- A program name from `src/` (e.g. `FTDCALC`, `PENCALC`, `STATCALC`, `ESTPEN`, `OVPINT`, `OFFSET`, `FRZEVAL`, `DUPCHK`, `ENTVAL`).
+- The name of one pipeline step: `ENTVAL`, `DUPCHK`, `STATCALC`, `FTDCALC`, `PENCALC`, `ESTPEN`, `FRZEVAL`, `OVPINT`, `OFFSET`, `CAWRMTCH`, `NOTGEN`. These are the programs `run/pipeline.sh` executes, so each has a directly observable oracle.
+- The called subprograms (`NAMCTL`, `DATCNV`, `PENACC`, `DATECNV`) are **not** valid inputs: they have no standalone pipeline step and no report, so a golden pair would require a generated caller harness. If asked for one, say so and stop.
 - Nothing else. GnuCOBOL is installed by the playbook if missing.
 
 ## Procedure
 
 1. Announce the program and the seven steps below; announce each step as it starts and print the coverage number as soon as Step 3 produces it.
-2. **Establish the oracle.** Ensure GnuCOBOL is present (`cobc --version`; if absent `sudo apt-get install -y gnucobol`, developed against 3.2.0, 3.1.2 also works). Run `./tools/build.sh` then `./run/pipeline.sh`. Capture the target step's inputs and outputs — the module record generation it reads, the one it writes, and its `data/<PROGRAM>.rpt`. These pairs are golden and are ground truth by definition.
+2. **Establish the oracle.** Ensure GnuCOBOL is present (`cobc --version`; if absent `sudo apt-get install -y gnucobol`, developed against 3.2.0, 3.1.2 also works). Run `./tools/build.sh` then `./run/pipeline.sh`. Take the step's actual inputs and outputs from the `Reads`/`Writes` columns of the step table in `docs/PIPELINE.md` — for most steps that is the module record generation in and the next generation plus `data/<PROGRAM>.rpt` out, but `ENTVAL` reads and writes entity records and `CAWRMTCH` writes only a report. Capture whatever that step actually produces. These pairs are golden and are ground truth by definition.
 3. **Enumerate branches.** Every conditional path in `src/<PROGRAM>.cbl`: `IF`/`ELSE`, level-88 conditions, `EVALUATE` branches, `PERFORM ... UNTIL` exits, file-status paths, and branches inside any subprogram it `CALL`s. Number them; this list is the denominator for coverage.
 4. **Measure coverage.** Determine which enumerated branches the shipped fixtures in `data/` actually execute — instrument by reasoning over the fixture records, or by building an instrumented copy of the program in a scratch tree. Report the gap explicitly as a headline number, not a footnote.
 5. **Construct targeted inputs for uncovered branches.** Work in a scratch copy of the repo (the programs open hard-coded relative paths under `data/`). Add fixture records to the relevant `data/*.txt` that satisfy each uncovered branch's precondition, re-run `BLDFIX` and the pipeline steps up to and including the target, and **capture the COBOL's output as the expected value.** Never derive an expected value from the rule.

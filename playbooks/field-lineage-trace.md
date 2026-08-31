@@ -29,7 +29,8 @@ Given one field from `copybooks/` in `github.com/dpeachpeach/cgirsdemo`, find ev
 ## Field: <NAME> — <n> bytes at offset <n> in <COPYBOOK>
 
 <One sentence: the copybook declares offset and length and says nothing about
-meaning, so the programs below can and do disagree about these bytes.>
+meaning, so the programs below can hold incompatible beliefs about these bytes —
+followed by whether, here, they do.>
 
 | Program | Positions | Read/Write | Interpreted as | Source |
 |---------|-----------|------------|----------------|--------|
@@ -38,7 +39,7 @@ meaning, so the programs below can and do disagree about these bytes.>
 ### Downstream consequence
 ```
 
-- Open the report with the one-sentence statement above — it is the point of the exercise, not a preamble.
+- Open the report with the one-sentence statement above — it is the point of the exercise, not a preamble. State the actual outcome for this field in it; a trace that finds no conflict says so.
 - Every row sourced as `path:line`. A reader must be able to verify any row in ten seconds.
 - The "Interpreted as" column must be justified by logic, not by naming. If the evidence is thin, say "insufficient evidence" rather than guessing.
 - Runtime target under six minutes.

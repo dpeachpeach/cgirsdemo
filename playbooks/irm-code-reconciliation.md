@@ -34,6 +34,7 @@ Given one batch program in `github.com/dpeachpeach/cgirsdemo`, produce the delta
 |---|------|----------|-----------|-------|--------|
 
 ### Cross-notation findings
+### Stale comments (comment contradicts the code it sits on)
 ### Unverifiable (redacted in source)
 ### Summary: N match, N drift, N code-only, N irm-only, N unverifiable
 ```
@@ -51,7 +52,7 @@ Given one batch program in `github.com/dpeachpeach/cgirsdemo`, produce the delta
 - Resolve `COPY` members from `copybooks/`. Follow `PERFORM ... THRU` ranges to their exit paragraphs before concluding what a branch does.
 - `COMP-3` is packed decimal — sign and rounding behavior are part of the rule, not an implementation detail. `ROUNDED` vs truncation is reportable.
 - Level-88 condition names are branch conditions; enumerate them individually.
-- Comments in this corpus are deliberately stale: they cite rates, form revisions and IRM subsections that have since moved. Read behavior from the code only. Where a comment contradicts the code it sits on, that is itself a reportable finding (`CODE-ONLY` row, noting the comment).
+- Comments in this corpus are deliberately stale: they cite rates, form revisions and IRM subsections that have since moved. Read behavior from the code only. A comment is never a rule, so a comment contradicting the code it sits on never creates or changes a reconciliation row — the row reflects the code, and the contradiction is reported separately under **Stale comments**.
 - The IRM markdown is genuine, harvested from irs.gov, with `source_url` and `retrieved` in each file's front matter — cite subsections as written there.
 - `jcl/`, `ctl/`, `sched/` and `catlg/` do not execute, but they are internally consistent and can be right or wrong against the COBOL. That is why they are in scope.
 - Twelve well-sourced findings beat sixty speculative ones.
