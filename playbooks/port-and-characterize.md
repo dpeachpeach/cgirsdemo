@@ -19,11 +19,11 @@ Port one COBOL program in `github.com/dpeachpeach/cgirsdemo` to Python and produ
 6. **Write characterization tests.** One per golden pair, under `port/<program>/tests/`, runnable with `pytest`. Assert current behavior including defects. Name tests honestly — `test_minimum_penalty_uses_stale_hardcoded_amount` is a good name, because the name is where the drift gets recorded.
 7. **Write the Python implementation** at `port/<program>/<program>.py`, matching COBOL arithmetic semantics: `Decimal` never `float`; explicit rounding matching `ROUNDED` (and truncation where there is no `ROUNDED`); packed-decimal (`COMP-3`) sign handling; fixed-width field truncation and zero-fill; the same record layout offsets as the copybook.
 8. **Converge.** Run the suite against both implementations. Classify each mismatch: *new code wrong* → fix the Python and iterate; *legacy has a bug* → **implement the bug**, and log it separately as a proposed fix; *both defensible* → stop and log an Acceptable Difference candidate for human decision.
-9. Write the report to `reports/PORT-<PROGRAM>-<YYYY-MM-DD>.md` in the format below, print the headline numbers to the transcript, and leave the scratch tree changes out of the deliverable — only `port/` and `reports/` are added to the repo.
+9. Write the report to `reports/PORT-<PROGRAM>-<YYYY-MM-DD>.md` (gitignored — a working artifact, never committed) and print the headline numbers and both tables to the transcript. Only `port/` is added to the repo; scratch-tree changes stay out.
 
 ## Specifications
 
-- Deliverables: `port/<program>/<program>.py`, `port/<program>/tests/`, and `reports/PORT-<PROGRAM>-<YYYY-MM-DD>.md`.
+- Deliverables: `port/<program>/<program>.py` and `port/<program>/tests/` in the repo; the report is printed to the transcript and kept on disk at `reports/PORT-<PROGRAM>-<YYYY-MM-DD>.md` (gitignored, not committed).
 - Report format:
 
 ```markdown
