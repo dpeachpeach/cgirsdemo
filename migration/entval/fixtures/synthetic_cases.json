@@ -1,0 +1,283 @@
+[
+  {
+    "name": "prefix_not_in_campus_table",
+    "note": "EIN prefix 99 is absent from PFXTAB -> E101",
+    "input": "990001234OSPREY KUDZU CORP                  OSPR                                                             XX00000000012 1   000000000              ",
+    "output": "990001234OSPREY KUDZU CORP                  OSPR                                                             XX00000000012 1   000000000              ",
+    "errors": [
+      "ENTVAL  990001234  E101  PREFIX NOT IN CAMPUS TABLE"
+    ],
+    "counters": {
+      "read": 1,
+      "written": 1,
+      "errors": 1,
+      "nc_corr": 0
+    }
+  },
+  {
+    "name": "prefix_zero_zero",
+    "note": "EIN prefix 00 is absent from PFXTAB -> E101",
+    "input": "000001234OSPREY KUDZU CORP                  OSPR                                                             XX00000000012 1   000000000              ",
+    "output": "000001234OSPREY KUDZU CORP                  OSPR                                                             XX00000000012 1   000000000              ",
+    "errors": [
+      "ENTVAL  000001234  E101  PREFIX NOT IN CAMPUS TABLE"
+    ],
+    "counters": {
+      "read": 1,
+      "written": 1,
+      "errors": 1,
+      "nc_corr": 0
+    }
+  },
+  {
+    "name": "name_all_punctuation_not_derivable",
+    "note": "name squeezes to spaces -> NAMCTL RC=8 -> E102, NCTL untouched",
+    "input": "100002001...,--''                           ABCD                                                             XX00000000012 1   000000000              ",
+    "output": "100002001...,--''                           ABCD                                                             XX00000000012 1   000000000              ",
+    "errors": [
+      "ENTVAL  100002001  E102  NAME CONTROL NOT DERIVABLE                ABCD"
+    ],
+    "counters": {
+      "read": 1,
+      "written": 1,
+      "errors": 1,
+      "nc_corr": 0
+    }
+  },
+  {
+    "name": "name_only_the_not_derivable",
+    "note": "name 'THE' alone: DROPTHE leaves spaces -> E102",
+    "input": "100002002THE                                THE                                                              XX00000000012 1   000000000              ",
+    "output": "100002002THE                                THE                                                              XX00000000012 1   000000000              ",
+    "errors": [
+      "ENTVAL  100002002  E102  NAME CONTROL NOT DERIVABLE                THE"
+    ],
+    "counters": {
+      "read": 1,
+      "written": 1,
+      "errors": 1,
+      "nc_corr": 0
+    }
+  },
+  {
+    "name": "fym_zero_defaults_to_twelve",
+    "note": "ENT-FYM zero -> 12",
+    "input": "100002003JUNCO FESCUE INC                   JUNC                                                             XX00000000000 1   000000000              ",
+    "output": "100002003JUNCO FESCUE INC                   JUNC                                                             XX00000000012 1   000000000              ",
+    "errors": [],
+    "counters": {
+      "read": 1,
+      "written": 1,
+      "errors": 0,
+      "nc_corr": 0
+    }
+  },
+  {
+    "name": "all_edits_fire_together",
+    "note": "bad prefix + underivable name + EC F/940 + FYM zero on one record",
+    "input": "990002004.. -- ..                           ZZZZ                                                             XX00000000000F 1  000000000              ",
+    "output": "990002004.. -- ..                           ZZZZ                                                             XX00000000012F    000000000              ",
+    "errors": [
+      "ENTVAL  990002004  E101  PREFIX NOT IN CAMPUS TABLE",
+      "ENTVAL  990002004  E102  NAME CONTROL NOT DERIVABLE                ZZZZ",
+      "ENTVAL  990002004  E104  EC F INCOMPATIBLE WITH 940 FRC"
+    ],
+    "counters": {
+      "read": 1,
+      "written": 1,
+      "errors": 3,
+      "nc_corr": 0
+    }
+  },
+  {
+    "name": "nc_mismatch_and_ec_f_940",
+    "note": "E103 and E104 both fire on one record; error line order",
+    "input": "940002005THE AVOCET                         THEA                                                             XX00000000012F 1  000000000              ",
+    "output": "940002005THE AVOCET                         AVOC                                                             XX00000000012F    000000000              ",
+    "errors": [
+      "ENTVAL  940002005  E103  NAME CONTROL MISMATCH - CORRECTED         THEA  AVOC",
+      "ENTVAL  940002005  E104  EC F INCOMPATIBLE WITH 940 FRC"
+    ],
+    "counters": {
+      "read": 1,
+      "written": 1,
+      "errors": 1,
+      "nc_corr": 1
+    }
+  },
+  {
+    "name": "ec_f_with_940_blanked",
+    "note": "EC F with 940 FRC -> E104 and ENT-I-940 set to space",
+    "input": "840002006GADWALL JASMINE ASSOCIATES INC     GADW                                                             XX00000000012F 1  000000000              ",
+    "output": "840002006GADWALL JASMINE ASSOCIATES INC     GADW                                                             XX00000000012F    000000000              ",
+    "errors": [
+      "ENTVAL  840002006  E104  EC F INCOMPATIBLE WITH 940 FRC"
+    ],
+    "counters": {
+      "read": 1,
+      "written": 1,
+      "errors": 1,
+      "nc_corr": 0
+    }
+  },
+  {
+    "name": "ec_f_without_940_no_error",
+    "note": "EC F but 940 indicator not '1' -> no E104",
+    "input": "840002007GADWALL JASMINE ASSOCIATES INC     GADW                                                             XX00000000012F1   000000000              ",
+    "output": "840002007GADWALL JASMINE ASSOCIATES INC     GADW                                                             XX00000000012F1   000000000              ",
+    "errors": [],
+    "counters": {
+      "read": 1,
+      "written": 1,
+      "errors": 0,
+      "nc_corr": 0
+    }
+  },
+  {
+    "name": "the_plus_single_word_drops_the",
+    "note": "'THE AVOCET' -> AVOC, the shipped-fixture E103 pattern",
+    "input": "910002008THE AVOCET                         THEA                                                             XX00000000012 1   000000000              ",
+    "output": "910002008THE AVOCET                         AVOC                                                             XX00000000012 1   000000000              ",
+    "errors": [
+      "ENTVAL  910002008  E103  NAME CONTROL MISMATCH - CORRECTED         THEA  AVOC"
+    ],
+    "counters": {
+      "read": 1,
+      "written": 1,
+      "errors": 0,
+      "nc_corr": 1
+    }
+  },
+  {
+    "name": "the_plus_two_words_drops_the",
+    "note": "'THE KILLDEER LARKSPUR CO' -> KILL",
+    "input": "270002009THE KILLDEER LARKSPUR CO           KILL                                                             XX00000000012 1   000000000              ",
+    "output": "270002009THE KILLDEER LARKSPUR CO           KILL                                                             XX00000000012 1   000000000              ",
+    "errors": [],
+    "counters": {
+      "read": 1,
+      "written": 1,
+      "errors": 0,
+      "nc_corr": 0
+    }
+  },
+  {
+    "name": "leading_space_defeats_the_drop",
+    "note": "name padded with a leading space: DROPTHE misses, THEA derived",
+    "input": "910002010 THE AVOCET                        THEA                                                             XX00000000012 1   000000000              ",
+    "output": "910002010 THE AVOCET                        THEA                                                             XX00000000012 1   000000000              ",
+    "errors": [],
+    "counters": {
+      "read": 1,
+      "written": 1,
+      "errors": 0,
+      "nc_corr": 0
+    }
+  },
+  {
+    "name": "lowercase_name_folded",
+    "note": "lower case name is upper cased before derivation",
+    "input": "100002011siskin kudzu corp                  SISK                                                             XX00000000012 1   000000000              ",
+    "output": "100002011siskin kudzu corp                  SISK                                                             XX00000000012 1   000000000              ",
+    "errors": [],
+    "counters": {
+      "read": 1,
+      "written": 1,
+      "errors": 0,
+      "nc_corr": 0
+    }
+  },
+  {
+    "name": "name_shorter_than_four_chars",
+    "note": "two-character name -> name control space padded",
+    "input": "100002012AB                                 AB                                                               XX00000000012 1   000000000              ",
+    "output": "100002012AB                                 AB                                                               XX00000000012 1   000000000              ",
+    "errors": [],
+    "counters": {
+      "read": 1,
+      "written": 1,
+      "errors": 0,
+      "nc_corr": 0
+    }
+  },
+  {
+    "name": "name_three_chars_mismatch",
+    "note": "three-character name against a four-character NCTL -> E103",
+    "input": "100002013ABC                                ABCD                                                             XX00000000012 1   000000000              ",
+    "output": "100002013ABC                                ABC                                                              XX00000000012 1   000000000              ",
+    "errors": [
+      "ENTVAL  100002013  E103  NAME CONTROL MISMATCH - CORRECTED         ABCD  ABC"
+    ],
+    "counters": {
+      "read": 1,
+      "written": 1,
+      "errors": 0,
+      "nc_corr": 1
+    }
+  },
+  {
+    "name": "punctuation_squeezed_out",
+    "note": "commas, periods, apostrophes and hyphens are dropped, not kept",
+    "input": "100002014O'HARE-SMITH, JR. CO               OHAR                                                             XX00000000012 1   000000000              ",
+    "output": "100002014O'HARE-SMITH, JR. CO               OHAR                                                             XX00000000012 1   000000000              ",
+    "errors": [],
+    "counters": {
+      "read": 1,
+      "written": 1,
+      "errors": 0,
+      "nc_corr": 0
+    }
+  },
+  {
+    "name": "digits_kept_in_name_control",
+    "note": "digits are ordinary characters to NAMCTL",
+    "input": "1000020153M KUDZU CO                        3MKU                                                             XX00000000012 1   000000000              ",
+    "output": "1000020153M KUDZU CO                        3MKU                                                             XX00000000012 1   000000000              ",
+    "errors": [],
+    "counters": {
+      "read": 1,
+      "written": 1,
+      "errors": 0,
+      "nc_corr": 0
+    }
+  },
+  {
+    "name": "spaces_squeezed_across_words",
+    "note": "single letter words concatenate: 'A B C KUDZU' -> ABCK",
+    "input": "100002016A B C KUDZU                        ABCK                                                             XX00000000012 1   000000000              ",
+    "output": "100002016A B C KUDZU                        ABCK                                                             XX00000000012 1   000000000              ",
+    "errors": [],
+    "counters": {
+      "read": 1,
+      "written": 1,
+      "errors": 0,
+      "nc_corr": 0
+    }
+  },
+  {
+    "name": "name_exactly_35_chars_starting_the",
+    "note": "35 character name beginning 'THE ' exercises the 31 char move",
+    "input": "100002017THE OSPREY CLOVER ASSOCIATES INCXYZOSPR                                                             XX00000000012 1   000000000              ",
+    "output": "100002017THE OSPREY CLOVER ASSOCIATES INCXYZOSPR                                                             XX00000000012 1   000000000              ",
+    "errors": [],
+    "counters": {
+      "read": 1,
+      "written": 1,
+      "errors": 0,
+      "nc_corr": 0
+    }
+  },
+  {
+    "name": "nctl_already_correct",
+    "note": "clean record: no error lines at all",
+    "input": "100002018SISKIN KUDZU CORP                  SISK                                                             XX00000000012 1   000000000              ",
+    "output": "100002018SISKIN KUDZU CORP                  SISK                                                             XX00000000012 1   000000000              ",
+    "errors": [],
+    "counters": {
+      "read": 1,
+      "written": 1,
+      "errors": 0,
+      "nc_corr": 0
+    }
+  }
+]
