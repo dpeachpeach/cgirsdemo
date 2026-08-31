@@ -1,0 +1,26 @@
+{
+  "provenance": "Records hand-built in a scratch copy of the repo, written to data/MODEST.dat, and processed by the compiled bin/FRZEVAL (GnuCOBOL 3.1.2). MODFRZ.dat, FRZEVAL.rpt and FRZEVAL.stdout in this directory are that program's actual output.",
+  "record_index_is_zero_based": true,
+  "cases": [
+    {"id": "S01", "index": 0, "ein": "700000001", "description": "no freeze at all, positive balance"},
+    {"id": "S02", "index": 1, "ein": "700000002", "description": "A freeze only"},
+    {"id": "S03", "index": 2, "ein": "700000003", "description": "V freeze only"},
+    {"id": "S04", "index": 3, "ein": "700000004", "description": "L freeze only"},
+    {"id": "S05", "index": 4, "ein": "700000005", "description": "S freeze only"},
+    {"id": "S06", "index": 5, "ein": "700000006", "description": "Z freeze only"},
+    {"id": "S07", "index": 6, "ein": "700000007", "description": "X freeze only (never evaluated)"},
+    {"id": "S08", "index": 7, "ein": "700000008", "description": "all five evaluated freezes set"},
+    {"id": "S09", "index": 8, "ein": "700000009", "description": "A and V together"},
+    {"id": "S10", "index": 9, "ein": "700000010", "description": "R and O already present in input, no evaluated freeze"},
+    {"id": "S11", "index": 10, "ein": "700000011", "description": "lowercase freeze letters do not match"},
+    {"id": "S12", "index": 11, "ein": "700000012", "description": "negative balance (credit exceeds assessment)"},
+    {"id": "S13", "index": 12, "ein": "700000013", "description": "balance exceeds the 9-digit report edit field"},
+    {"id": "S14", "index": 13, "ein": "700000014", "description": "penalties add and deposits/credits subtract; interest excluded"},
+    {"id": "S15", "index": 14, "ein": "700000015", "description": "zero balance with L freeze"},
+    {"id": "S16", "index": 15, "ein": "700000016", "description": "large negative balance beyond the report edit field"},
+    {"id": "S17", "index": 16, "ein": "700000017", "description": "one-cent negative balance"},
+    {"id": "S18", "index": 17, "ein": "700000018", "description": "L and Z together"},
+    {"id": "S19", "index": 18, "ein": "700000019", "description": "sum overflows the 11-digit whole part of the balance accumulator"},
+    {"id": "S20", "index": 19, "ein": "700000020", "description": "balance exactly at the report edit field maximum"}
+  ]
+}
