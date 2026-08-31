@@ -1,0 +1,52 @@
+100001077SISKIN KUDZU CORP                  SISK    2180 KUDZU ST                      MEMPHIS               TN00003750109  1  000000000              
+100001119WIGEON JASMINE HOLDINGS INC        WIGE    3736 JASMINE ST                    KANSAS CITY           MO00006499912 1   000000000              
+100001308AVOCET LARKSPUR ASSOCIATES INC     AVOC    3566 LARKSPUR ST                   OGLETHORPE            GA00003106806 1   000000000              
+120001112WARBLER FESCUE ASSOCIATES INC      WARB    1253 FESCUE ST                     CINCINNATI            OH00004599912 1   000000000              
+120001322THE AVOCET                         THEA    5222 KUDZU ST                      AUSTIN                TX00007330112 1   000000000              
+200001007SISKIN BRIAR CORP                  SISK    719 BRIAR ST                       FRESNO                CA00009388812 1   000000000              
+200001014AVOCET MALLOW MFG CO               AVOC    589 MALLOW ST                      ANDOVER               MA00000550112 1   000000000              
+200001210TANAGER HAWTHORN ASSOCIATES INC    TANA    1730 HAWTHORN ST                   MEMPHIS               TN00003750109A1   000000000              
+200001329TOWHEE GORSE CORP                  TOWH    8078 GORSE ST                      HOLTSVILLE            NY00000050112A1   000000000              
+260001168ORIOLE MALLOW HOLDINGS INC         ORIO    1025 MALLOW ST                     FRESNO                CA00009388806A1   000000000              
+270001224THE KILLDEER LARKSPUR CO           KILL    9892 LARKSPUR ST                   MEMPHIS               TN00003750109 1   000000000              
+270001231THE CURLEW KUDZU CO                CURL    4958 KUDZU ST                      MEMPHIS               TN00003750112 1   000000000              
+270001287WARBLER FESCUE LLC                 WARB    2603 FESCUE ST                     ANDOVER               MA00000550112A1   000000000              
+450001217IBIS DOGWOOD HOLDINGS INC          IBIS    8079 DOGWOOD ST                    HOLTSVILLE            NY00000050112   1 000000000              
+450001266THE GADWALL KUDZU CO               GADW    6626 KUDZU ST                      KANSAS CITY           MO00006499912A1   000000000              
+460001294PLOVER INDIGO CO                   PLOV    9820 INDIGO ST                     FRESNO                CA00009388812 1   000000000              
+470001364CARDINAL KUDZU CORP                CARD    7256 KUDZU ST                      KANSAS CITY           MO00006499909F1   000000000              
+810001091NUTHATCH MALLOW PC                 NUTH    9701 MALLOW ST                     ANDOVER               MA00000550112 1   000000000              
+810001133THE KILLDEER GORSE CO              KILL    4698 GORSE ST                      OGDEN                 UT00008420106F1   000000000              
+820001154THE SISKIN                         THES    2065 ZINNIA ST                     OGDEN                 UT00008420112 1   000000000              
+820001175CURLEW JASMINE HOLDINGS INC        CURL    4404 JASMINE ST                    HOLTSVILLE            NY00000050112 1   000000000              
+830001238THE CARDINAL JASMINE CO            CARD    970 JASMINE ST                     KANSAS CITY           MO00006499912F1   000000000              
+840001028HARRIER LARKSPUR PA                HARR    7031 LARKSPUR ST                   ANDOVER               MA00000550109F1   000000000              
+840001042QUAIL GORSE INC                    QUAI    8437 GORSE ST                      HOLTSVILLE            NY00000050112  1  000000000              
+840001259GADWALL JASMINE ASSOCIATES INC     GADW    5064 JASMINE ST                    HOLTSVILLE            NY00000050112F 1  000000000              
+850001147NUTHATCH FESCUE PC                 NUTH    3649 FESCUE ST                     CINCINNATI            OH00004599912A1   000000000              
+850001252THE SISKIN                         THES    3569 INDIGO ST                     OGLETHORPE            GA00003106812F  1 000000000              
+860001063WIGEON DOGWOOD PA                  WIGE    5397 DOGWOOD ST                    AUSTIN                TX00007330112 1   000000000              
+860001105THE VEERY                          THEV    461 FESCUE ST                      KANSAS CITY           MO00006499912 1   000000000              
+870001049THE VEERY CLOVER CO                VEER    8725 CLOVER ST                     FRESNO                CA00009388812F1   000000000              
+880001336THE MERLIN                         THEM    6592 ZINNIA ST                     CINCINNATI            OH00004599912 1   000000000              
+910001189THE AVOCET                         THEA    5556 DOGWOOD ST                    CINCINNATI            OH00004599912 1   000000000              
+910001273OSPREY CLOVER CORP                 OSPR    5512 CLOVER ST                     HOLTSVILLE            NY00000050109 1   000000000              
+920001140IBIS HAWTHORN ASSOCIATES INC       IBIS    4023 HAWTHORN ST                   KANSAS CITY           MO00006499912   1 000000000              
+920001182BITTERN GORSE CO                   BITT    3984 GORSE ST                      OGLETHORPE            GA00003106812   1 000000000              
+920001301PLOVER ASTER MFG CO                PLOV    9821 ASTER ST                      KANSAS CITY           MO00006499906A1   000000000              
+920001315THE SISKIN                         THES    4553 ZINNIA ST                     CINCINNATI            OH00004599906F1   000000000              
+930001056THE IBIS                           THEI    3052 GORSE ST                      AUSTIN                TX00007330109F1   000000000              
+930001070PLOVER GORSE CO                    PLOV    9637 GORSE ST                      FRESNO                CA00009388812 1   000000000              
+930001098THE NUTHATCH                       THEN    9187 HAWTHORN ST                   FRESNO                CA00009388812 1   000000000              
+930001343OSPREY CLOVER MFG CO               OSPR    9591 CLOVER ST                     MEMPHIS               TN00003750112 1   000000000              
+930001357CARDINAL FESCUE CORP               CARD    4298 FESCUE ST                     FRESNO                CA00009388812 1   000000000              
+940001035BITTERN MALLOW PA                  BITT    5988 MALLOW ST                     OGLETHORPE            GA00003106806F1   000000000              
+940001161ORIOLE ZINNIA ASSOCIATES INC       ORIO    2193 ZINNIA ST                     FRESNO                CA00009388809F1   000000000              
+940001203SISKIN JASMINE LLC                 SISK    8155 JASMINE ST                    OGLETHORPE            GA00003106812A1   000000000              
+940001245JUNCO FESCUE INC                   JUNC    5850 FESCUE ST                     KANSAS CITY           MO00006499906A1   000000000              
+940001350THE LAPWING                        THEL    203 ASTER ST                       OGLETHORPE            GA00003106812A1   000000000              
+950001196TANAGER LARKSPUR PA                TANA    5994 LARKSPUR ST                   MEMPHIS               TN00003750106 1   000000000              
+950001280JUNCO MALLOW CO                    JUNC    180 MALLOW ST                      CINCINNATI            OH00004599906 1   000000000              
+980001021NUTHATCH FESCUE PC                 NUTH    5573 FESCUE ST                     AUSTIN                TX00007330112A1   000000000              
+980001084WARBLER KUDZU PA                   WARB    9831 KUDZU ST                      AUSTIN                TX00007330112A1   000000000              
+980001126TANAGER DOGWOOD PA                 TANA    4923 DOGWOOD ST                    FRESNO                CA00009388806F1   000000000              
