@@ -1,0 +1,3 @@
+100000041OSPREY KUDZU CORP                  OSPR    1 MAIN ST                          MEMPHIS               TN000037501     1 000000000              
+100000042OSPREY KUDZU CORP                  OSPR    1 MAIN ST                          MEMPHIS               TN000037501 0   1 000000000              
+100000043OSPREY KUDZU CORP                  OSPR    1 MAIN ST                          MEMPHIS               TN0000375010    1 000000000              

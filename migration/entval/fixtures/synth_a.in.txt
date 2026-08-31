@@ -1,0 +1,20 @@
+990000011OSPREY KUDZU CORP                  OSPR    1 MAIN ST                          MEMPHIS               TN00003750112   1 000000000              
+440000012OSPREY KUDZU CORP                  OSPR    1 MAIN ST                          MEMPHIS               TN00003750112   1 000000000              
+100000013                                   ABCD    1 MAIN ST                          MEMPHIS               TN00003750112   1 000000000              
+100000014THE                                THEX    1 MAIN ST                          MEMPHIS               TN00003750112   1 000000000              
+100000015...,'-                             PUNC    1 MAIN ST                          MEMPHIS               TN00003750112   1 000000000              
+100000016O'HARE, SMITH-JONES CO.            OHAR    1 MAIN ST                          MEMPHIS               TN00003750112   1 000000000              
+100000017QUAIL GORSE INC                    QUAI    1 MAIN ST                          MEMPHIS               TN00003750100   1 000000000              
+990000018THE                                THEX    1 MAIN ST                          MEMPHIS               TN00003750100   1 000000000              
+100000019GADWALL JASMINE INC                GADW    1 MAIN ST                          MEMPHIS               TN00003750112F 1  000000000              
+100000020GADWALL JASMINE INC                GADW    1 MAIN ST                          MEMPHIS               TN00003750112F1   000000000              
+100000021GADWALL JASMINE INC                GADW    1 MAIN ST                          MEMPHIS               TN00003750112A 1  000000000              
+100000022wigeon jasmine holdings inc        wige    1 MAIN ST                          MEMPHIS               TN00003750112   1 000000000              
+100000023   TANAGER HAWTHORN CO             TANA    1 MAIN ST                          MEMPHIS               TN00003750112   1 000000000              
+100000024THE KILLDEER LARKSPUR CO           KILL    1 MAIN ST                          MEMPHIS               TN00003750112   1 000000000              
+100000025A B                                AB      1 MAIN ST                          MEMPHIS               TN00003750112   1 000000000              
+100000026SISKIN KUDZU CORP                  SISK    1 MAIN ST                          MEMPHIS               TN00003750112   1 000000000              
+100000027SISKIN KUDZU CORP                  sisk    1 MAIN ST                          MEMPHIS               TN00003750112   1 000000000              
+100000028ABCDEFGHIJKLMNOPQRSTUVWXYZ012345678ABCD    1 MAIN ST                          MEMPHIS               TN00003750112   1 000000000              
+100000029THEODORE ROOSEVELT ASSOCIATES INC  THEO    1 MAIN ST                          MEMPHIS               TN00003750112   1 000000000              
+1000000303M & CO                            3M&C    1 MAIN ST                          MEMPHIS               TN00003750112   1 000000000              
